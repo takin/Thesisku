@@ -1,0 +1,27 @@
+\section{\textit{Question Answering}}
+Semakin banyaknya sumber informasi yang tersedia di internet menyebabkan semakin sulitnya mendapatkan infromasi yang relevan, informasi yang diberikan oleh mesin pencari konvensional saat ini hanya berupa tautan ke laman yang mengandung meta-keyword yang mirip dengan kata kunci yang dimasukkan, pengguna harus membaca terlebih dahulu laman web yang diberikan oleh mesin pencari yang tentu saja akan membutuhkan waktu. Hal ini menjadi tidak efisien terutama apabila yang akan dicari adalah informasi-informasi sederhana seperti informasi cuaca, alamat sebuah instansi dan lain sebagainya. 
+
+Tujuan dari \emph{Question Answering (QA)} adalah untuk mencari jawaban atas pertanyaan pengguna dalam bentuk terstruktur maupun tidak terstruktur \citep*{moussa_kader}. Pengguna memasukkan pertanyaan dalam bentuk bahasa alami, sistem kemudian akan memproses pertanyaan dan akan menyajikan jawabannya dalam bentuk jawaban singkat hasil pemrosesan.
+
+\citet*{ramprasath_hariharan} menyebutkan arsitektur sebuah sistem QA secara umum terdiri dari beberapa modul yiatu :
+\begin{enumerate}
+	\item Antarmuka pertanyaan \emph{(Query Interface)} \\
+		Modul ini berfungsi sebagai penjembatan antara pengguna dengan sistem. Di sinilah pengguna memasukkan kata kunci pencariannya dalam bentuk bahasa alami.
+	\item Modul Analisa Pertanyaan \emph{(Query Analyzer)} \\
+		Modul ini akan menganalisa subjek, predikat dan objek dari kata kunci yang dimasukkan oleh pengguna.
+	\item Modul Klasifikasi Pertanyaan \emph{(Question Classification)} \\
+		Bagian ini berfungsi untuk memeriksa tipe dari pertanyaan seperti misalnya \emph{siapa} secara eksplisit menanyakan tentang orang, \emph{kapan}, berhubungan dengan waktu dan lain sebagainya. Klasifikasi ini akan digunakan sebagai pegangan pada tahapan validasi jawaban, apakah jawaban yang diberikan sesui dengan pertanyaan.
+	\item Pembentukan Query \emph{(Query Reformulation)} \\
+		Modul ini memegang peranan cukup penting, karena bagian ini yang bertanggungjawab atas keabsahan jawaban yang dihasilkan.
+	\item Modul Pencari \emph{(Search Engine)} \\ 
+		Modul ini digunakan untuk mencari jawaban dari pertayaan yang dihasilkan oleh modul query reformulation. Jawaban akan dicari pada sumber pengetahuan yang telah ditetukan, misalnya laman web ataupun modul basis pengetahuan tertentu seperti ontologi dan lain sebagainya.
+	\item Module Ekstraksi \emph{(Answering Extractor)} \\ 
+		Kandidat jawaban yang dihasilakan oleh modul search engine kemudian akan dikirimkan ke bagian ini, dimana kandidat jawaban yang umumnya berupa dokumen akan diekstraksi dan selanjutkan akan dikirimkan ke modul penyaring.
+	\item Modul Penyaring Jawaban \emph{(Answer Filtering)} \\
+		Modul ini akan menyaring kandidat jawaban hasil ekstraksi yang relevan dengan pertanyaan yang diberikan.
+	\item Validasi Jawaban \emph{(Answer Validation)} \\ 
+		Sebelum jawaban ditampilkan kepada pengguna, terlebih dahulu jawaban akan divalidasi berdasarkan klasifikasi pertanyaan yang telah ditentukan pada modul klasifikasi pertanyaan.
+	\item Ontology Merging \\
+		Mesikipun multi-ontologi memiliki kelebihan pada kayanya konsep pengetahuan yang didapat namun demikian oleh karena sangat dimungkinkan masing-masing ontologi yang menjadi sumber informasi ini memiliki struktur yang berbeda, sehingga arsitektur multi-ontologi seperti ini memunculkan tantangan baru yaitu bagaimana menggali informasi dari berbagi ontologi yang tersebar tersebut. Salah satu solusinya adalah dengan menggunakan metode merging.
+\end{enumerate}
+\citet*{choi} mendefinisikan ontology-merging sebagai proses pembentukan sebuah ontologi yang mendefinisikan sebuah makna tertentu dari dua buah atau lebih ontologi yang mendefinisikan makna tersebut dengan cara dan bahasa yang berbeda, sehingga diharapkan akan terbentuk sebuah ontologi yang memiliki keseragaman bahasa untuk sebuah konsep tertentu. Ontologi hasil merging memiliki menyimpan informasi dari masing-masing ontologi sumber, namun memiliki keunikan dan bukan merupakan pengganti dari ontologi sumber infromasinya.

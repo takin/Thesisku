@@ -1,0 +1,22 @@
+\section{Metodologi Penelitian}
+Metodologi yang digunakan dalam melakukan penelitian ini adalah sebagai berikut:
+\begin{enumerate}
+	\item Studi literatur\\
+	Tahapan ini dilakukan dengan cara mengumpulkan dan mempelajari literatur-literatur yang berkaitan dengan sistem \emph{question answering} seperti pemrosesan bahasa alami untuk bahasa Indonesia, metode pengembangan ontologi, metode ontology merging serta literatur tentang deduksi pengetahuan dengan menggunakan reasoner.
+	\item Pengumpulan data\\
+	Pengumpulan data yang akan digunakan sebagai data ontologi dilakukan dengan cara mengambil data dari website-website resmi propinsi, kabupaten dan dinas yang ada di lingkungan pemerintah propinsi Nusa Tenggara Barat.
+	\item Analisis dan perancangan sistem\\
+	Tahapan analisis dan perancangan sistem dilakukan secara bertahap, dimulai dari perancangan pemrosesan bahasa alami untuk bahasa Indonesia, kemudian dilanjutkan dengan perancangan tiga buah ontologi yang akan digunakan sebagai sumber pengetahuan dalam penelitian ini yaitu ontologi kedinasan, ontologi pariwisata dan ontologi geografi.
+
+	Setelah proses perancangan ontologi selesai, dilanjutkan dengan proses perancangan sistem utama yaitu meliputi perancangan parser ontologi dan reasoner. Pemodelan rancangan menggunakan UML. Proses akhir dari tahapan perancangan adalah perancangan antar muka sistem.
+	\item Implementasi hasil perancangan\\
+	Tahapan implementasi dilakukan sesuai dengan urutan proses perancangan, yaitu mulai dari realisasi pengembangan ontologi. Realisasi pengembangan ontologi menggunakan tool Protege versi 5.0 beta. Versi ini dipilih karena sudah mendukung penuh pengembangan ontologi dengan bahasa OWL 2.
+
+	Realisasi sistem menggunakan bahasa Java, JSP dan JavaScript, OWL API versi 4 dan untuk tool reasoning menggunakan reasoner Pellet versi 2.3.1 dari Clark dan Parsia. Sedangkan untuk server menggunakan Apache Tomcat versi 8.
+	\item Pengujian\\
+	Tahapan pengujian dilakukan untuk membuktikan bahwa sistem yang dikembangkan telah bekerja sesuai dengan yang diinginkan. Proses pengujian akan dilakukan dengan metode ``Black box testing'' dimana sistem diberikan pertanyaan untuk mengamati apakah jawaban yang diberikan telah sesaui dengan yang dikehendaki atau tidak.
+
+	Beberapa pertanyaan yang dibuat melibatkan data dari beberapa ontologi yang dibangun, hal ini untuk menguji apakah sistem \emph{question answering} yang dikembangkan ini sudah benar-benar dapat mencari data dari lebihd ari satu sumber ontologi yang telah dibuat.
+	\item Penarikan kesimpulan\\
+	Setelah proses pengujian selesai, tahap selanjutnya adalah merangkum semua hasil pengujian untuk dijadikan sebuah kesimpulan mengenai hasil pengembangan sistem termasuk apabila terdapat saran dan penyempurnaan untuk penelitian selanjutnya.
+\end{enumerate}

@@ -1,0 +1,11 @@
+*.pdf
+*.toc
+*.log
+*.lof
+*.aux
+*.glo
+*.lot
+PDF/*
+Bahan/*
+Odt/*
+Program/API/Jena/*

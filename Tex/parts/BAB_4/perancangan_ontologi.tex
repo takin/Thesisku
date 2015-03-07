@@ -1,0 +1,16 @@
+\section{Perancangan Ontologi}
+Sistem yang akan dibangun ini nantinya akan mengguakan tiga buah ontologi yang berbeda, dimana masing-masing ontologi diletakaan pada halaman web yang berbeda. Sistem akan mengakses masing-masing ontologi secara terpisah sesuai dengan pertanyaan yang telah diolah oleh sistem pemrosesan bahasa.
+
+\emph{Term} yang akan digunakan untuk membangun ontologi ini adalah mengacu pada \emph{term} yang telah tersedia pada dataset versi bahasa indonesia dari dbpedia. Apabila terdapat \emph{term} yang tidak ada dalam dbpedia, maka akan dibangun term sendiri dengan menggunakan \emph{namespace} http://www.ntbprov.go.id/ontologies/<nama_ontologi>, dimana pada bagian <nama_ontologi> diisi dengan nama masing-masing ontologi yang akan dibangun, misalalnya ontologi pariwisata, maka namespace \empg{ntbpar}, selanjutnya \emph{term} baru tersebut akan diberikan properti owl:sameAs dengan term yang sudah ada dalam dataset dbpedia versi global.
+
+\subsection{Ontologi pariwisata}
+Secara spesifik menyimpan fakta-fakta mengenai informasi pariwisata dari masing-masing kabupaten dan kota. Ontologi ini selanjutnya akan disebut ntb-tourism. Kelas yang terdapat dalam ontologi ntb-tourism ditunjukkan pada tabel XXXX.
+
+Ontologi ntb-tourism juga memiliki \emph{Datatype property} dan \emph{Object property} seperti yang disajikan masing-masing pada tabel XXXX dan tabel XXXX.
+
+\subsection{Ontologi geografi}
+Secara spesifik menyimpan fakta mengenai informasi geografis dari masing-masing kabupaten dan kota. Ontologi ini selanjutnya akan disebut ntb-geo.
+
+\subsection{Ontologi Pemerintahan}
+Secara spesifik menyimpan fakta-fakta mengenai struktur pemerintahan di tingkat kabupaten, termasuk dinas, kecamatan dan desa. Ontologi ini selanjutnya akan disebut ntb-gov
+

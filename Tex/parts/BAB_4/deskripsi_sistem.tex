@@ -1,0 +1,8 @@
+\section{Deskripsi Sistem}
+Sesuai dengan tujuan awal dari penelitian ini yaitu untuk memberikan kemudahan dalam pengaksesan informasi data kabutapen di wilayah Nusa Tenggara Barat dengan membangun sistem \emph{question answering}. Sistem akan dibangun berbasis web sehingga nantinya dapat diakses secara luas. 
+
+Halaman beranda terdiri dari form untuk melakukan input pertanyaan dalam bahasa Indonesia baku yang sesuai dengan tata tulis bahasa Indonesia dan tombol untuk submit pertanyaa, kemudian sistem akan menampilkan jawaban pada halaman yang sama tanpa berpidah halaman, hal ini dimaksudkan agar memudahkan pengguna jika ingin melakukan pencarian ulang atau melakukan pencarian baru.
+
+Secara umum, sistem \emph{question answering} yang akan dibangun terdiri dari tiga tahapan utama yaitu proses awal yang terdiri dari proses tokenisasi dan \emph{stemming}, proses utama yaitu proses pencarian data pada ontologi dan proses \emph{reasoning} untuk mendapatkan informasi dari data yang diperoleh sedangkan proses akhir adalah proses pembentukan template jawaban yang akan ditampilkan di browser.
+
+Proses tokenisasi dilakukan dengan tujuan untuk memecah kalimat pertanyaan menjadi token-token kata. Token pertama diambil dan dicek apakah token tersebut merupakan kata tanya atau bukan, token ini berfungsi sebagai \emph{question type classifier} untuk menentukan format jawaban yang akan ditampilkan. Apablia token pertama bukan merupakan kata tanya, maka token akan dikembalikan untuk diproses lebih lanjut yaitu proses \emph{stemming} untuk mencari kata dasar dari masing-masing token.

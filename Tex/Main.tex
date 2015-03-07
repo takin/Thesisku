@@ -1,0 +1,175 @@
+%Template pembuatan Tesis dengan ugmtesis.
+
+\documentclass[tesis]{ugmtesis}
+\usepackage{listings}
+\DeclareGraphicsExtensions{.png}
+\graphicspath{{./Img/}}
+%-----------------------------------------------------------------
+%Disini awal masukan untuk data tesis
+%-----------------------------------------------------------------
+\titleind{SISTEM \textit{QUESTION ANSWERING} DATA KABUPATEN DI NUSA TENGGARA BARAT BERBASIS MULTI-ONTOLOGI}
+
+\titleeng{QUESTION ANSWERING SYSTEM OF COUNTY DATA IN WEST NUSA TENGGARA USING MULTI-ONTOLOGY BASED}
+
+\fullname{SYAMSUL MUTTAQIN}
+
+\idnum{11/323286/PPA/03632}
+
+\examdate{}
+
+\degree{Master of Computer Science}
+
+\yearsubmit{2013}
+
+\program{Ilmu Komputer}
+
+\headprogram{Prof. Dra. Sri Hartati, Ph.D}
+
+\dept{Ilmu Komputer}
+
+\firstsupervisor{DR techn. Khabib Mustofa}
+
+\firstexaminer{}
+
+\secondexaminer{}
+
+\thirdexaminer{}
+
+%-----------------------------------------------------------------
+%Disini akhir masukan untuk data tesis
+%-----------------------------------------------------------------
+
+\begin{document}
+% ------------------------------------------------------------------------
+% setting untuk listing coding OWL
+% ------------------------------------------------------------------------
+\lstset{language=XML, breaklines=true, keepspaces=true, columns=flexible}
+% ------------------------------------------------------------------------
+
+\cover
+
+\titlepageind 
+
+\approvalpage
+
+\declarepage
+
+%-----------------------------------------------------------------
+%Disini awal masukan Acknowledment
+%-----------------------------------------------------------------
+\acknowledment
+\begin{flushright}
+\Large\emph\cal{Karya sederhana ini kupersembahkan \\
+buat Bapak, Ibu, \\dan Adik-adikku tercinta}
+\end{flushright}
+%-----------------------------------------------------------------
+%Disini akhir masukan untuk muka tesis
+%-----------------------------------------------------------------
+
+%-----------------------------------------------------------------
+%Disini awal masukan Motto
+%-----------------------------------------------------------------
+\motto
+\emph{Sesungguhnya dalam penciptaan langit dan bumi, dan silih bergantinya
+malam dan siang terdapat tanda-tanda bagi orang-orang yang berakal, (yaitu)
+orang-orang yang mengingat Allah sambil berdiri atau duduk atau dalam keadaan
+berbaring dan mereka memikirkan tentang penciptaan langit dan bumi (seraya
+berkata) : Ya Tuhan kami, tiadalah Engkau menciptakan ini dengan sia-sia, Maha
+Suci Engkau, maka peliharalah kami dari siksa neraka.}
+
+\begin{flushright}
+(Q.S. Ali Imran : 190 - 191)
+\end{flushright}
+
+\emph{Maka apabila kamu telah selesai (dari sesuatu urusan), kerjakanlah
+dengan sungguh-sungguh (urusan) yang lain.}
+
+\begin{flushright}
+(Q.S. Alam Nasyrah : 7)
+\end{flushright}
+%-----------------------------------------------------------------
+%Disini akhir masukan untuk Motto
+%-----------------------------------------------------------------
+
+%-----------------------------------------------------------------
+%Disini awal masukan untuk Prakata
+%-----------------------------------------------------------------
+\preface
+Segala puji dan syukur semata-mata hanya untuk Allah SWT, karena atas segala
+rahmat, hidayah dan bantuan-Nya jualah maka akhirnya Tesis dengan judul
+Sistem \textit{Question Answering} Data Kabupaten di Nusa Tenggara Barat ini telah selesai penulis susun.
+
+Telah banyak bantuan yang penulis peroleh selama dalam penulisan Tesis ini, untuk itu tak lupa penulis ucapkan terima kasih yang sebesar-besarnya kepada:
+
+\begin{enumerate}
+	\item{Bapak dan Ibu yang selama ini telah sabar membimbing dan mendoakan penulis tanpa kenal untuk selama-lamanya,}
+	\item{DR techn. Khabib Mustofa yang telah dengan sabar membimbing penulis hingga Tesis ini selesai,}
+	\item{Segenap staf dan karyawan program Pascasarjana Ilmu Komputer FMIPA UGM, yang telah banyak bekerjasama dengan penulis selama belajar di Pascasarjana Ilmu Komputer UGM,}
+\end{enumerate}
+
+Penulis sangat menyadari tentunya Tesis ini tidak lepas dari kekurangan maupun kelemahan, untuk itu segala kritik dan saran yang sifatnya membangun demi melengkapi segala kekurangan dan kelemahan Tesis ini tentu sangat Penulis harapkan. Semoga karya ilmiah ini bermanfaat khususnya bagi Penulis sendiri maupun pengembangan dalam bidang Ilmu Komputer khususnya 
+dalam bidang pencarian semantik web.
+
+\begin{tabular}{p{7.5cm}c}
+&Yogyakarta, 13 Januari 2015\\
+&\\
+&\\
+&Penulis
+\end{tabular}
+%-----------------------------------------------------------------
+%Disini akhir masukan Prakata
+%-----------------------------------------------------------------
+
+\tableofcontents
+\listoftables
+\listoffigures
+%\lambang
+
+%-----------------------------------------------------------------
+%Disini awal masukan Intisari
+%-----------------------------------------------------------------
+\include{./parts/ABSTRACT_ID}
+%-----------------------------------------------------------------
+%Disini akhir masukan Intisari
+%-----------------------------------------------------------------
+
+%-----------------------------------------------------------------
+%Disini awal masukan untuk Abstract
+%-----------------------------------------------------------------
+\include{./parts/ABSTRACT_EN}
+%-----------------------------------------------------------------
+%Disini akhir masukan Abstract
+%-----------------------------------------------------------------
+
+%-----------------------------------------------------------------
+% Main Contents goes here
+%-----------------------------------------------------------------
+\include{./parts/BAB_1}
+\include{./parts/BAB_2}
+\include{./parts/BAB_3}
+\include{./parts/BAB_4}
+\include{./parts/BAB_5}
+% \include{./parts/BAB_6}
+% \include{./parts/BAB_7}
+%----------------------------------------------------------------
+% End of Main Contents
+%----------------------------------------------------------------
+
+%-----------------------------------------------------------------
+% Daftar Pustaka
+%-----------------------------------------------------------------
+\include{./parts/DAFTAR_PUSTAKA}
+%-----------------------------------------------------------------
+% End of Daftar Pustaka
+%-----------------------------------------------------------------
+
+%-----------------------------------------------------------------
+% Lampiran
+%-----------------------------------------------------------------
+\appendix
+\chapter{}
+%-----------------------------------------------------------------
+% end of Lampiran
+%-----------------------------------------------------------------
+
+\end{document}
