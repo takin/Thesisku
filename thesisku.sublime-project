@@ -1,0 +1,11 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"folder_exclude_patterns" : ["Img", "Tpl"],
+			"file_exclude_patterns":["*.lof","*.glo","*.toc","*.log","*.aux","*.pdf","*.cls",".*png","*.eps"],
+			"path": "/media/Data/Documents/Kuliah/Thesisku/Tex"
+		}
+	]
+}
