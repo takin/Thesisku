@@ -6,6 +6,12 @@
 			"folder_exclude_patterns" : ["Img", "Tpl"],
 			"file_exclude_patterns":["*.lof","*.glo","*.toc","*.log","*.aux","*.pdf","*.cls",".*png","*.eps"],
 			"path": "/media/Data/Documents/Kuliah/Thesisku/Tex"
+		},
+		{
+			"follow_symlinks" : true,
+			"path":"/media/Data/Documents/Kuliah/Thesisku/Program/Ontologi",
+			"file_exclude_patterns": [".fuse*","catalog*"],
+			"folder_exclude_patterns": ["v*"]
 		}
 	]
 }

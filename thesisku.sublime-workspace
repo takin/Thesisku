@@ -7,13 +7,49 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "Tex/parts/BAB_4.tex",
+			"settings":
+			{
+				"buffer_size": 247,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Tex/parts/BAB_4/arsitektur_sistem.tex",
+			"settings":
+			{
+				"buffer_size": 603,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Tex/parts/BAB_4/perancangan_ontologi.tex",
+			"settings":
+			{
+				"buffer_size": 1778,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Tex/parts/BAB_4/deskripsi_sistem.tex",
+			"settings":
+			{
+				"buffer_size": 1589,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 244.0,
+		"height": 387.0,
 		"selected_items":
 		[
+			[
+				"git ",
+				"Git: Push"
+			],
 			[
 				"type",
 				"Set Syntax: TypeScript"
@@ -68,17 +104,25 @@
 	],
 	"file_history":
 	[
+		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_5/implementasi_ontologi.tex",
+		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_6/pengujian_ontologi.tex",
+		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_4/perancangan_ontologi.tex",
+		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_3/owl_ontologi.tex",
+		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_3/ontologi_reasoning.tex",
+		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_3/ontologi.tex",
+		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/ABSTRACT_EN.tex",
+		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/DAFTAR_PUSTAKA.tex",
+		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_3.tex",
+		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_2.tex",
+		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_1.tex",
+		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_3/pemrosesan_bahasa_alami.tex",
+		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_1/latar_belakang.tex",
 		"/media/Data/Documents/Kuliah/Thesisku/thesisku.sublime-project",
 		"/home/syamsul/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_3/question_answering.tex",
 		"/home/syamsul/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
-		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_3/pemrosesan_bahasa_alami.tex",
-		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_4/perancangan_ontologi.tex",
-		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_3/ontologi_reasoning.tex",
-		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_3/ontologi.tex",
 		"/media/Data/Documents/Kuliah/Thesisku/Tex/Tpl/Template_Tesis.glo",
 		"/media/Data/Documents/Kuliah/Thesisku/Tex/logougm.eps",
-		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_1/latar_belakang.tex",
 		"/media/Data/Documents/Kuliah/Thesisku/Bahan/QA_Algorithm_and_process.ppt",
 		"/media/Data/Documents/Kuliah/Thesisku/Bahan/NLP Bahasa Indonesia/Android Pure Java Programming 1.mp4",
 		"/media/Data/Documents/Kuliah/Thesisku/README.md",
@@ -120,8 +164,357 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "Tex/parts/BAB_4.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 247,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Tex/parts/BAB_4/arsitektur_sistem.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 603,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								603,
+								603
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Tex/parts/BAB_4/perancangan_ontologi.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1778,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1166,
+								1166
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 69.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "Tex/parts/BAB_4/deskripsi_sistem.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1589,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1589,
+								1589
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -160,6 +553,10 @@
 	{
 		"height": 0.0
 	},
+	"output.git":
+	{
+		"height": 182.0
+	},
 	"project": "thesisku.sublime-project",
 	"replace":
 	{
@@ -171,6 +568,22 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"onto",
+				"parts/BAB_4/perancangan_ontologi.tex"
+			],
+			[
+				"arsi",
+				"parts/BAB_4/arsitektur_sistem.tex"
+			],
+			[
+				"deks",
+				"parts/BAB_4/deskripsi_sistem.tex"
+			],
+			[
+				"bab",
+				"parts/BAB_4.tex"
+			],
 			[
 				"teori",
 				"Tex/parts/BAB_3/question_answering.tex"
@@ -201,7 +614,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 288.0,
 	"status_bar_visible": true,
 	"template_settings":
