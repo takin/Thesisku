@@ -1,6 +1,6 @@
 \chapter{TINJAUAN PUSTAKA}
 \section{Tinjauan Pustaka}
-Penelitian yang berfokus pada sistem QA telah banyak dilakukan oleh peneliti-peneliti sebelumnya seperti terlihat dalam Tabel 1, baik dalam bidang open-domain maupun closed-domain. Open-domain QA ditujukan untuk menjawab pertanyaan-pertanyaan umum sedangkan closed-domain QA ditujukan untuk area domain tertentu seperti bidang kesehatan, pemerintahan, musik, prakiraan cuaca dan lain sebagainya. Tujuan dari pengembangan QA berbasis closed-domain adalah untuk mendapatkan sistem yang memiliki knowledge yang lebih spesifik sehingga diharapkan mampu menjawab pertanyaan-pertanyaan secara lebih spesifik pada domain tertentu.
+Penelitian yang berfokus pada sistem QA telah banyak dilakukan oleh peneliti-peneliti sebelumnya seperti terlihat dalam \ref{table:perbandingan_penelitian}, baik dalam bidang open-domain maupun closed-domain. Open-domain QA ditujukan untuk menjawab pertanyaan-pertanyaan umum sedangkan closed-domain QA ditujukan untuk area domain tertentu seperti bidang kesehatan, pemerintahan, musik, prakiraan cuaca dan lain sebagainya. Tujuan dari pengembangan QA berbasis closed-domain adalah untuk mendapatkan sistem yang memiliki knowledge yang lebih spesifik sehingga diharapkan mampu menjawab pertanyaan-pertanyaan secara lebih spesifik pada domain tertentu.
 
 Menurut \citet{zadeh} meskipun algoritma mesin pencari yang ada saat ini seperti Google, Yahoo dan Bing telah mengalami perkembangan yang cukup signifikan namun tetap memiliki keterbatasan dalam hal memaknai sebuah query pencarian, hal ini dikarenakan keterbatasan pada pengetahuan (knowledge) dari sumber pencariannya. Pengetahuan didapatkan dari pengalaman, pembelajaran dan komunikasi yang dilakukan oleh manusia.
 
@@ -23,3 +23,31 @@ Kecepatan proses pencarian data dari berbagai sumber pengetahuan dapat ditingkat
 Proses merging ontologi dengan cara manual memiliki beberapa kendala seperti lamanya waktu yang dibutuhkan terutama pada ontologi yang berukuran cukup besar dan kompleks. Kendala lainnya adalah kemungkinan inkonsistensi dari ontologi yang dihasilkan. Oleh karena itu beberapa penelitian dalam bidang ontology merging pernah dilakukan oleh beberapa peneliti terdahulu dengan tujuan untuk memudahkan proses merging seperti yang dilakukan oleh \citet*{noy_mussen} dengan mengmbangkan tool SMART dimana tool ini bersifat plugin bagi perangkat lunak Protege. 
 
 Penelitian yang cukup baru dalam bidang merging dilakukan oleh \citet*{stumme_maedche} dimana penelitian ini menawarkan metode baru dalam melakukan proses merging yang disebut dengan FCA-Merge. Metode ini menggunakan pendekatan teknik Bottom-Up dalam membangun ontologi.
+
+\begin{landscape}
+\begin{table}[h]
+	\caption{Perbandingan penelitian dan metode yang digunakan}
+	\label{table:perbandingan_penelitian}
+	\begin{tabularx}{\linewidth}{|c|>{\centering\setlength}X|c|c|c|}
+		\hline
+		No & Peneliti dan Tahun Penelitian & Model Sistem & Domain & Basis Pengetahuan \\
+		\hline
+		1 & Angele \emph{et al}, 2003 & QA & \emph{Closed} & Ontologi-tunggal \\
+		\hline
+		2 & Guo dan Zhang, 2006 & QA & \emph{Open} & Ontologi-tunggal dan web \\
+		\hline
+		3 & Lopez \emph{et al}, 2009 & QA & \emph{Open} & Multi-ontologi \\
+		\hline
+		4 & Marriot \emph{et al}, 2012 & Web Protal & \emph{Closed} & Multi-ontologi \\
+		\hline
+		5 & Abdullah dan Rehab, 2011 & QA & \emph{Open} & Ontologi-tunggal \\
+		\hline
+		6 & Bendi, 2010 & QA & \emph{Closed} & Ontologi-tunggal \\
+		\hline
+		7 & Suryawan, 2013 & QA & \emph{Closed} & Ontologi-tunggal \\
+		\hline
+		8 & Muttaqin, 2013 & QA & \emph{Closed} & Multi-ontologi \\
+		\hline
+	\end{tabularx}
+\end{table}
+\end{landscape}

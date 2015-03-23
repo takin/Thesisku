@@ -1,4 +1,7 @@
 *.pdf
+*.synctex*
+*.tmp
+*.fdb_latexmk
 .fuse*
 *.toc
 *.log

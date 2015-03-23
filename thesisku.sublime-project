@@ -3,8 +3,8 @@
 	[
 		{
 			"follow_symlinks": true,
-			"folder_exclude_patterns" : ["Img", "Tpl"],
-			"file_exclude_patterns":["*.lof","*.glo","*.toc","*.log","*.aux","*.pdf","*.cls",".*png","*.eps"],
+			"folder_exclude_patterns" : ["Tpl"],
+			"file_exclude_patterns":["*.lof","*.lot","*.fdb*","*.sync*","*.glo","*.toc","*.log","*.aux","*.pdf","*.cls",".*png","*.eps","*.graph*","*.dia"],
 			"path": "/media/Data/Documents/Kuliah/Thesisku/Tex"
 		},
 		{

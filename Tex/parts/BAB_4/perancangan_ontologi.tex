@@ -1,16 +1,161 @@
 \section{Perancangan Ontologi}
-Sistem yang akan dibangun ini nantinya akan mengguakan tiga buah ontologi yang berbeda, dimana masing-masing ontologi diletakaan pada halaman web yang berbeda. Sistem akan mengakses masing-masing ontologi secara terpisah sesuai dengan pertanyaan yang telah diolah oleh sistem pemrosesan bahasa.
+Sistem yang akan dibangun ini nantinya akan mengguakan tiga buah ontologi yang berbeda, masing-masing ontologi dapat diakses sercara terpisah melalui protokol http.
 
-\emph{Term} yang akan digunakan untuk membangun ontologi ini adalah mengacu pada \emph{term} yang telah tersedia pada dataset versi bahasa indonesia dari dbpedia. Apabila terdapat \emph{term} yang tidak ada dalam dbpedia, maka akan dibangun term sendiri dengan menggunakan \emph{namespace} http://www.ntbprov.go.id/ontologies/<nama_ontologi>, dimana pada bagian <nama_ontologi> diisi dengan nama masing-masing ontologi yang akan dibangun, misalalnya ontologi pariwisata, maka namespace \empg{ntbpar}, selanjutnya \emph{term} baru tersebut akan diberikan properti owl:sameAs dengan term yang sudah ada dalam dataset dbpedia versi global.
+\emph{Term} yang akan digunakan untuk membangun ketiga ontologi ini mengacu pada \emph{term} yang telah tersedia pada dbpedia versi bahasa Indoensia. Apabila terdapat \emph{term} yang tidak ada dalam dbpedia, maka akan dibangun term sendiri dengan menggunakan \emph{namespace} http://www.ntbprov.go.id/resource/<nama\_term>. Format pembuatan <nama\_term> mengacu pada sistem penamaan \emph{resource} pada dbpedia.
 
 \subsection{Ontologi pariwisata}
-Secara spesifik menyimpan fakta-fakta mengenai informasi pariwisata dari masing-masing kabupaten dan kota. Ontologi ini selanjutnya akan disebut ntb-tourism. Kelas yang terdapat dalam ontologi ntb-tourism ditunjukkan pada tabel XXXX.
+Ontologi pariwisata secara spesifik menyimpan fakta-fakta mengenai informasi pariwisata dari masing-masing kabupaten dan kota. Ontologi ini diberi nama ntbpar.owl. Kelas serta properti yang terdapat dalam ontologi ntbpar.owl ditunjukkan pada tabel \ref{table:ontopar_class}
 
-Ontologi ntb-tourism juga memiliki \emph{Datatype property} dan \emph{Object property} seperti yang disajikan masing-masing pada tabel XXXX dan tabel XXXX.
+\begin{table}[!]
+	\caption{Daftar kelas dalam ontologi pariwisata}
+	\label{table:ontopar_class}
+	\begin{tabularx}{\textwidth}{|c|X|X|}
+		\hline
+		No & Nama Kelas & Keterangan \\
+		\hline
+		1 & Bar & - \\
+		\hline
+		2 & Budaya & - \\
+		\hline
+		3 & Desa & - \\
+		\hline
+		4 & Hotel & - \\
+		\hline
+		5 & Losmen & - \\
+		\hline
+		6 & Villa & - \\
+		\hline
+		7 & Kerajinan & - \\
+		\hline
+		8 & Kuliner & - \\
+		\hline
+		9 & Makanan & - \\
+		\hline
+		10 & Minuman & - \\
+		\hline
+		11 & Pariwisata & - \\
+		\hline
+		12 & Desa\_wisata & - \\
+		\hline
+		13 & Desa\_adat & - \\
+		\hline
+		14 & Ekowisata & - \\
+		\hline
+		15 & Wisata\_alam & - \\
+		\hline
+		16 & Air\_terjun & - \\
+		\hline
+		17 & Gili & - \\
+		\hline
+		18 & Pulau & - \\
+		\hline
+		19 & Gunung & - \\
+		\hline
+		20 & Pantai & - \\
+		\hline
+		21 & Wisata\_budaya & - \\
+		\hline
+		22 & Restoran & - \\
+		\hline
+		23 & Spa & - \\
+		\hline
+	\end{tabularx}
+\end{table}
 
 \subsection{Ontologi geografi}
-Secara spesifik menyimpan fakta mengenai informasi geografis dari masing-masing kabupaten dan kota. Ontologi ini selanjutnya akan disebut ntb-geo.
+Ontologi geografi secara spesifik menyimpan fakta-fakta mengenai informasi geografis dari masing-masing kabupaten dan kota. Kelas serta properti yang terdapat pada ontologi ini ditunjukkan dalam tabel \ref{table:ontogeo_class}
+
+\begin{table}[!]
+	\caption{Daftar kelas ontologi geografi}
+	\label{table:ontogeo_class}
+	\begin{tabularx}{\textwidth}{|c|X|X|}
+		\hline
+		No & Nama Kelas & Keterangan \\
+		\hline
+		1 & Desa & - \\
+		\hline
+		2 & Ibu\_kota & - \\
+		\hline
+		3 & Kabupaten & - \\
+		\hline
+		4 & Kecamatan & - \\
+		\hline
+		5 & Komoditas & - \\
+		\hline
+		6 & Perikanan & - \\
+		\hline
+		7 & Perkebunan & - \\
+		\hline
+		8 & Pertambangan & - \\
+		\hline
+		9 & Pertanian & - \\
+		\hline
+		10 & Kota & - \\
+		\hline
+		11 & Provinsi & - \\
+		\hline
+	\end{tabularx}
+\end{table}
 
 \subsection{Ontologi Pemerintahan}
-Secara spesifik menyimpan fakta-fakta mengenai struktur pemerintahan di tingkat kabupaten, termasuk dinas, kecamatan dan desa. Ontologi ini selanjutnya akan disebut ntb-gov
+Ontologi pemerintahan atau ontogov.owl secara spesifik menyimpan fakta-fakta mengenai informasi pemerintahan di tingkat kabupaten, termasuk dinas, kecamatan dan desa. Daftar kelas serta properti yang terdapat dalam ontologi ini ditunjukkan dalam tabel \ref{table:ontogeo_class}
 
+\begin{table}[!]
+	\caption{Daftar kelas ontologi pemerintahan}
+	\label{table:ontogov_class}
+	\begin{tabularx}{\textwidth}{|c|X|X|}
+		\hline
+		No & Nama Kelas & Keterangan \\
+		\hline
+		1 & Organization & - \\
+		\hline
+		2 & Pemerintah\_daerah & - \\
+		\hline
+		3 & Badan & - \\
+		\hline
+		4 & Biro & - \\
+		\hline
+		5 & Desa & - \\
+		\hline
+		5 & Dinas & - \\
+		\hline
+		7 & Kabupaten & - \\
+		\hline
+		8 & Kecamatan & - \\
+		\hline
+		9 & Kota & - \\
+		\hline
+		10 & Provinsi & - \\
+		\hline
+		11 & Person & - \\
+		\hline
+		12 & Bupati & - \\
+		\hline
+		13 & Gubernur & - \\
+		\hline
+		14 & Kepala\_desa & - \\
+		\hline
+		15 & Pegawai\_negeri & - \\
+		\hline
+		16 & PNS & - \\
+		\hline
+		17 & Camat & - \\
+		\hline
+		18 & Kepala\_badan & - \\
+		\hline
+		19 & Kepala\_biro & - \\
+		\hline
+		20 & Kepala\_dinas & - \\
+		\hline
+		21 & Wakil\_camat & - \\
+		\hline
+		22 & Wakil\_bupati & - \\
+		\hline
+		23 & Wakil\_gubernur & - \\
+		\hline
+		24 & Wakil\_wali\_kota & - \\
+		\hline
+		25 & Wali\_kota & - \\
+		\hline
+	\end{tabularx}
+\end{table}
