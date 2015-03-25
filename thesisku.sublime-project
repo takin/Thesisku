@@ -4,12 +4,12 @@
 		{
 			"follow_symlinks": true,
 			"folder_exclude_patterns" : ["Tpl"],
-			"file_exclude_patterns":["*.lof","*.lot","*.fdb*","*.sync*","*.glo","*.toc","*.log","*.aux","*.pdf","*.cls",".*png","*.eps","*.graph*","*.dia"],
-			"path": "/media/Data/Documents/Kuliah/Thesisku/Tex"
+			"file_exclude_patterns":["*.lof","*.lot","*.fdb*","*.sync*","*.glo","*.toc","*.log","*.aux","*.pdf","*.cls",".*png","*.eps","*.graph*","*.dia","*.tmp"],
+			"path": "./Tex"
 		},
 		{
 			"follow_symlinks" : true,
-			"path":"/media/Data/Documents/Kuliah/Thesisku/Program/Ontologi",
+			"path":"./Program/Ontologi",
 			"file_exclude_patterns": [".fuse*","catalog*"],
 			"folder_exclude_patterns": ["v*"]
 		}
