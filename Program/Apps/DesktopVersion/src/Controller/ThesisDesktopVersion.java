@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package thesisdesktopversion;
+package Controller;
 
+import Models.POSTagging;
 import java.util.Scanner;
 
 /**
@@ -24,9 +25,11 @@ public class ThesisDesktopVersion {
         
         String q = scan.nextLine();
         
-        Tokenizer token = new Tokenizer(q);
+        POSTagging token = new POSTagging(q);
         
-        System.out.println(token.getToken());
+        
+        
+        System.out.println(token.getTaggegSentence());
     }
     
 }
