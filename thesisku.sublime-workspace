@@ -7,6 +7,30 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "Tex/Main.tex",
+			"settings":
+			{
+				"buffer_size": 6630,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Tex/parts/BAB_4/deskripsi_sistem.tex",
+			"settings":
+			{
+				"buffer_size": 1589,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/syamsul/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 246,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -15,12 +39,12 @@
 		"selected_items":
 		[
 			[
-				"ins",
-				"Package Control: Install Package"
+				"la",
+				"LaTeXTools: Reconfigure and migrate settings"
 			],
 			[
-				"la",
-				"LaTeXTools: View PDF"
+				"ins",
+				"Package Control: Install Package"
 			],
 			[
 				"late",
@@ -77,12 +101,20 @@
 	"expanded_folders":
 	[
 		"/media/syamsul/Data/Documents/Kuliah/Thesisku/Tex",
-		"/media/syamsul/Data/Documents/Kuliah/Thesisku/Program/Ontologi"
+		"/media/syamsul/Data/Documents/Kuliah/Thesisku/Tex/parts",
+		"/media/syamsul/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_4"
 	],
 	"file_history":
 	[
-		"/media/syamsul/Data/Documents/Kuliah/Thesisku/thesisku.sublime-project",
+		"/media/syamsul/Data/Documents/www/idx.html",
+		"/etc/profile.d/infinality-settings.sh",
+		"/home/syamsul/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/server/node/firebase/design/penjelasan_arsitektur_sistem.txt",
+		"/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty",
+		"/media/syamsul/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_1.tex",
 		"/media/syamsul/Data/Documents/Kuliah/Thesisku/Tex/Main.tex",
+		"/var/log/Xorg.1.log",
+		"/media/syamsul/Data/Documents/Kuliah/Thesisku/thesisku.sublime-project",
 		"/media/syamsul/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_5/implementasi_ontologi.tex",
 		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_5/implementasi_antar_muka.tex",
 		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_5/implementasi_ontologi.tex",
@@ -117,7 +149,6 @@
 		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_3/ontologi_reasoning.tex",
 		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/DAFTAR_PUSTAKA.tex",
 		"/media/Data/Documents/Kuliah/Thesisku/Tex/parts/BAB_1/latar_belakang.tex",
-		"/home/syamsul/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 		"/home/syamsul/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
 		"/media/Data/Documents/Kuliah/Thesisku/Tex/Tpl/Template_Tesis.glo",
 		"/media/Data/Documents/Kuliah/Thesisku/Tex/logougm.eps",
@@ -128,7 +159,7 @@
 	],
 	"find":
 	{
-		"height": 38.0
+		"height": 47.0
 	},
 	"find_in_files":
 	{
@@ -142,6 +173,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"use_style",
 			"l",
 			"tabular",
 			"X",
@@ -168,8 +200,271 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "Tex/Main.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6630,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2268,
+								2268
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3164.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Tex/parts/BAB_4/deskripsi_sistem.tex",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1589,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/syamsul/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 246,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								157,
+								157
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": true,
+							"bh_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -204,6 +499,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 284.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
@@ -219,6 +518,14 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"main",
+				"Tex/Main.tex"
+			],
+			[
+				"mai",
+				"Tex/Main.tex"
+			],
 			[
 				"imple",
 				"Tex/parts/BAB_5/implementasi_ontologi.tex"
@@ -266,10 +573,6 @@
 			[
 				"in",
 				"Tex/parts/BAB_5/implementasi_ontologi.tex"
-			],
-			[
-				"main",
-				"Tex/Main.tex"
 			],
 			[
 				"onto",
