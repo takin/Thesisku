@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Models.nlp;
+package thesisdesktopversion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,17 +21,35 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
+ * Tokenizer merupakan bagian dari pre-process NLP
+ * fungsi kelas ini adalah untuk membentuk token-token dari kata yang diinputkan
+ * 
+ * Token yang telah dibentuk selanjutnya akan di cek kelas katanya ke dalam 
+ * database SQL untuk selanjutnya digunakan untuk memberikan TAG (POS TAG)
+ * sehingga nantinya token tersebut dapat di proses lebih lanjut oleh parser
+ * 
+ * Apabila sebuah token tidak diketahui kelas katanya, maka kata/token tersebut 
+ * akan diberikan tag UN (unknwon)
  * @author syamsul
  */
 public class Tokenizer {
     
+    /**
+     * Database setup (MySQL) property
+     */
     private static final String DB_URL = "jdbc:mysql://localhost:3306/";
-    private static final String DB_NAME = "lexicon";
+    private static final String DB_NAME = "kamuskata";
     private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DB_USER = "root";
     private static final String DB_PASS = "root";
     private static Connection SQL_CONNECTION;
+    
+    /**
+     * HashMap tipe kata tanya
+     * hashmap ini dibutuhkan untuk mengetahui tipe pertanyaan yang diberikan 
+     * oleh user.
+     * 
+     */
     private static final Map<String, String> QUESTION_TYPE_LIST = new HashMap<String, String>(){{
                                                                                 put("Apa","Benda"); 
                                                                                 put("Apakah","Benda"); 
@@ -140,14 +158,16 @@ public class Tokenizer {
         if( lexicon.containsKey(tokenToCheck) && lexicon.get(tokenToCheck) != null ){ // jika token ada dalam database lexicon
             TAGGED_TOKEN.add(tokenToCheck + " " + lexicon.get(tokenToCheck));
         }
-        // jika token tidak dietmukan dalam database lexicon
-        // lakukan proses stemming dengan urutan
-        // stage1: pengecekan dan pembuangan prefix
-        // stage2: pengecekan dan pembuangan suffix
-        // stage3: pengecekan dan pembuangan konfix
-        // settelah melewati masing-masing stage, lakukan pengecekan ulang ke dalam database.
-        // apabila semua stage sudah dilewati dan token tetap tidak ditemukan dalam database.
-        // maka lakukan manual tagging dengan menandai token sebagai UN
+        /**
+         * jika token tidak dietmukan dalam database lexicon
+         * lakukan proses stemming dengan urutan
+         * stage1: pengecekan dan pembuangan prefix
+         * stage2: pengecekan dan pembuangan suffix
+         * stage3: pengecekan dan pembuangan konfix
+         * settelah melewati masing-masing stage, lakukan pengecekan ulang ke dalam database.
+         * apabila semua stage sudah dilewati dan token tetap tidak ditemukan dalam database.
+         * maka lakukan manual tagging dengan menandai token sebagai UN
+         */
         if( lexicon.containsKey(tokenToCheck) && lexicon.get(tokenToCheck) == null ){
             String stemmedWord = this.stemming(tokenToCheck);
             if( stemmedWord != null ){
