@@ -6,21 +6,31 @@
 package Models;
 
 import Helpers.Broadcaster;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author syamsul
  */
-public class ProcessQuestion implements Broadcaster {
-
-    @Override
-    public void onSuccess() {
+public class ProcessQuestion {
+    
+    private final String Question;
+    private String Answer;
+    
+    public ProcessQuestion(String question){
+        Question = question;
         
+        processQuestion();
     }
-
-    @Override
-    public void onFail() {
+    
+    private void processQuestion(){
+        POSTagger tagging = new POSTagger(Question);
+        
         
     }
     
+    public String getAnswer(){
+        return Answer;
+    }
 }

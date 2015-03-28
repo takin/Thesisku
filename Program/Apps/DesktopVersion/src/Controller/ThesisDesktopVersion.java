@@ -5,7 +5,8 @@
  */
 package Controller;
 
-import Models.POSTagging;
+import Models.POSTagger;
+import Models.ProcessQuestion;
 import java.util.Scanner;
 
 /**
@@ -25,11 +26,9 @@ public class ThesisDesktopVersion {
         
         String q = scan.nextLine();
         
-        POSTagging token = new POSTagging(q);
+        ProcessQuestion p = new ProcessQuestion(q);
         
-        
-        
-        System.out.println(token.getTaggegSentence());
+//        System.out.println(p.getAnswer());
     }
     
 }

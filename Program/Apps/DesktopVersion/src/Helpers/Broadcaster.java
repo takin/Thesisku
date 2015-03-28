@@ -11,6 +11,6 @@ package Helpers;
  */
 public interface Broadcaster {
     
-    public void onSuccess();
-    public void onFail();
+    public void onSuccess(Object model, String message);
+    public void onFail(String message);
 }

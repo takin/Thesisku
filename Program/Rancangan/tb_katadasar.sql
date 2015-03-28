@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 26, 2015 at 03:10 PM
+-- Generation Time: Mar 28, 2015 at 11:48 PM
 -- Server version: 5.5.41-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.7
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `tb_katadasar` (
   `kode_katadasar` varchar(4) NOT NULL,
   PRIMARY KEY (`id_katadasar`),
   KEY `katadasar` (`katadasar`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28527 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28533 ;
 
 --
 -- Dumping data for table `tb_katadasar`
@@ -28584,7 +28584,13 @@ INSERT INTO `tb_katadasar` (`id_katadasar`, `katadasar`, `tipe_katadasar`, `kode
 (28523, 'zulmat', 'Nomina', 'N'),
 (28524, 'zurafah', 'Nomina', 'N'),
 (28525, 'zuriah', 'Nomina', 'N'),
-(28526, 'zus', 'Nomina', 'N');
+(28526, 'zus', 'Nomina', 'N'),
+(28527, 'siapakah', 'Pronomina', 'PRON'),
+(28528, 'manakah', 'Pronomina', 'PRON'),
+(28529, 'bagaimanakah', 'Pronomina', 'PRON'),
+(28530, 'berapakah', 'Pronomina', 'PRON'),
+(28531, 'dari manakah', 'Pronomina', 'PRON'),
+(28532, 'di manakah', 'Pronomina', 'PRON');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
