@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
-package Models;
+package SemanticQA.models.nlp;
 
+import SemanticQA.listeners.Broadcaster;
+import SemanticQA.models.DBModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,7 +28,7 @@ import java.util.Map;
  akan diberikan tag UN (unknwon)
  * @author syamsul
  */
-public class POSTagger extends DBModel {
+public class Tokenizer extends DBModel {
     
     /**
      * Arraylist yang berisi hashmap masing-masing token yang sudah diberi tag
@@ -35,27 +37,36 @@ public class POSTagger extends DBModel {
     private final List<Map<String,String>> TAGGED_TOKEN = new ArrayList<>();
     
     private final List<String> TOKEN = new ArrayList<>();
+    private static Broadcaster BROADCASTER;
+    private static Tokenizer tokenizer;
+    private static String SENTENCE;
     
-    public POSTagger(String question){
-        super();
-        doTagging(question);
+    public static Tokenizer tokenize(String sentence){
+        SENTENCE = sentence;
+        tokenizer = new Tokenizer();
+        return tokenizer;
+    }
+    
+    public static void then(Broadcaster broadcaster){
+        BROADCASTER = broadcaster;
+        tokenizer.process();
     }
     
     /**
      * 
-     * @param word -> token yang akan dicek kelasnya ke dalam database
-     * @return Arraylist Map<Kata, Kelas> 
+     * @param sentence -> kalimat yang akan di tag 
      */
-    private void doTagging(String sentence){
+    private void process(){
         
         try{
             /**
              * lakukan tokenisasi terhadap kalimat yang diinputkan
              * token ini nantinya akan digunakan sebagai clausa dalam SQL 
-             * untuk mencari tipe kata dari masing-masing token
+             * untuk mencari tipe kata masing-masing token
+             * 
+             * buat token dengan menggunakan pemisah spasi
              */
-            
-            String[] token = sentence.split(" ");
+            String[] token = SENTENCE.split(" ");
             
             /**
              * buat query sql untuk mencari tipe kata di dalam database
@@ -63,7 +74,7 @@ public class POSTagger extends DBModel {
              * tidak dilakukan berulang-ulang, sehingga dapat meningkatkan 
              * performa, terutama pada query dengan jumlah token yang banyak
              */
-            String SQL_QUERY = "SELECT katadasar,kode_katadasar FROM tb_katadasar WHERE katadasar in (";
+            String SQL_QUERY = "SELECT katadasar,kode_katadasar FROM tb_katadasar WHERE katadasar IN (";
             
             /**
              * lakukan iterasi untuk memasukkan masing-masing kata yang akan
@@ -112,9 +123,9 @@ public class POSTagger extends DBModel {
             // lakukan query ke database
             ResultSet queryResult = stmt.executeQuery(SQL_QUERY);
             
-           
            // cek apakah query menghasilkan result atau tidak
            if(queryResult.isBeforeFirst()){
+               
                
                // pastikan row mulai dari awal
                queryResult.first();
@@ -131,7 +142,8 @@ public class POSTagger extends DBModel {
                    String kata = queryResult.getString("katadasar");
                    String kode = queryResult.getString("kode_katadasar");
                    
-                   items.put(kata, kode);
+                   items.put("kata", kata);
+                   items.put("kode", kode);
                }
                
                
@@ -142,21 +154,25 @@ public class POSTagger extends DBModel {
                 */
                for(String t: TOKEN){
                    
-                   Map<String,String> newMap = new HashMap<>();
                    
-                   if(items.containsKey(t)){
+                   
+                   if(items.containsValue(t)){
                        // jika token terdapat di dalam database, maka buat hash
                        // dengan token sebagai key dan kode sebagai value
-                       newMap.put(t, items.get(t));
+                       TAGGED_TOKEN.add(items);
                    } else {
+                       Map<String,String> newMap = new HashMap<>();
                        // jika token tidak dikenali maka masukkan kata sebagai 
                        // key dan UN sebagai value
-                       newMap.put(t, "UN");
+                       newMap.put("kata", t);
+                       newMap.put("kode", "UN");
+                       
+                       TAGGED_TOKEN.add(newMap);
                    }
                    
                    // masukkan hashmap yang sudah dibuat sebelumnya ke dalam 
                    // arraylist
-                   TAGGED_TOKEN.add(newMap);
+                   
                }
                
            } else {
@@ -169,18 +185,18 @@ public class POSTagger extends DBModel {
                    Map<String,String> map = new HashMap<>();
                    
                    // masukkan token ke dalam map dan beri tag UN
-                   map.put(word, "UN");
+                   map.put("kata", word);
+                   map.put("kode", "UN");
                    
                    TAGGED_TOKEN.add(map);
                }
            }
+           
+           // broadcast hasil tag
+           BROADCASTER.onTokenizeSuccess(TAGGED_TOKEN);
             
         } catch( SQLException e ){
-            System.out.println(e.getMessage());
+            BROADCASTER.onTokenizeFail(e.getMessage());
         }
-    }
-    
-    public List<Map<String,String>> getTaggegSentence(){
-        return TAGGED_TOKEN;
     }
 }
