@@ -5,7 +5,7 @@
  */
 package SemanticQA.models.nlp;
 
-import SemanticQA.listeners.Broadcaster;
+import SemanticQA.interfaces.ParserListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +32,7 @@ public class Parser {
      * Hasil broadcast akan diterima oleh kelas ProcessQuestion untuk 
      * ditindak lanjuti
      */
-    private static Broadcaster BROADCASTER;
+    private static ParserListener parserListener;
     private static Parser PARSER;
     
     public static Parser parse(List token){
@@ -45,8 +45,8 @@ public class Parser {
         return PARSER;
     }
     
-    public static void then(Broadcaster broadcaster){
-        BROADCASTER = broadcaster;
+    public static void then(ParserListener listener){
+        parserListener = listener;
         PARSER.generatePhrase();
     }
     
@@ -56,7 +56,7 @@ public class Parser {
      */
     private void generatePhrase(){
         
-        BROADCASTER.onParseSuccess(TAGGED_WORD);
+        parserListener.onParseSuccess(TAGGED_WORD);
         
         int nextToken = 1;
         int tokenLength = TAGGED_WORD.size();

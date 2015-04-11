@@ -25,6 +25,7 @@ public abstract class DBModel {
         try{
             // inisialisasi koneksi ke database
             Class.forName(DB_DRIVER).newInstance();
+            
             SQL_CONNECTION = DriverManager.getConnection(DB_URL + DB_NAME, DB_USER, DB_PASS);
         }
         catch( IllegalAccessException | ClassNotFoundException | InstantiationException | SQLException e ){

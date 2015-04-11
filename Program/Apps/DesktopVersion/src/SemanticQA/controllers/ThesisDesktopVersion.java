@@ -5,8 +5,8 @@
  */
 package SemanticQA.controllers;
 
-import SemanticQA.listeners.Broadcaster;
-import SemanticQA.models.Question;
+import SemanticQA.models.Process;
+import SemanticQA.interfaces.ResultListener;
 import java.util.Scanner;
 
 /**
@@ -26,7 +26,7 @@ public class ThesisDesktopVersion {
         
         String sentence = scan.nextLine();
         
-        Question.process(sentence).then(new Broadcaster(){
+        Process.theQuestion(sentence).then(new ResultListener(){
             
             @Override
             public void onSuccess(String answer){

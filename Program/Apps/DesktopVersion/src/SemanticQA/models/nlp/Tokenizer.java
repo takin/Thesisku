@@ -6,15 +6,13 @@
 
 package SemanticQA.models.nlp;
 
-import SemanticQA.listeners.Broadcaster;
+import SemanticQA.interfaces.TokenizerListener;
 import SemanticQA.models.DBModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * POSTagger merupakan bagian dari pre-process NLP
@@ -31,14 +29,23 @@ import java.util.Map;
 public class Tokenizer extends DBModel {
     
     /**
-     * Arraylist yang berisi hashmap masing-masing token yang sudah diberi tag
-     * sesuai dengan jenis katanya yang terdapat dalam database
+     * Arraylist kalimat yang sudah dibentuk menjadi token per-kata.
+     * 
+     * Setelah proses TAGGING, apabila token pada array list ini ditemukan 
+     * kelas katanya di dalam database, maka akan dimodifikasi yaitu dengan 
+     * menambahkan tipe di akhir kata dengan dipisahkan oleh tanda ";"
+     * 
+     * misalnya token SIAPA, setelah proses TAGGing akan dimodifikasi menjadi 
+     * SIAPA;PRON
      */
-    private final List<Map<String,String>> TAGGED_TOKEN = new ArrayList<>();
-    
     private final List<String> TOKEN = new ArrayList<>();
-    private static Broadcaster BROADCASTER;
+    
     private static Tokenizer tokenizer;
+    
+    // listener untuk dikirimkan ke kelas Observer (dalam hal ini kelas Process)
+    private static TokenizerListener tokenizerListener;
+    
+    // string kalimat yang akan di tagging
     private static String SENTENCE;
     
     public static Tokenizer tokenize(String sentence){
@@ -47,8 +54,8 @@ public class Tokenizer extends DBModel {
         return tokenizer;
     }
     
-    public static void then(Broadcaster broadcaster){
-        BROADCASTER = broadcaster;
+    public static void then(TokenizerListener listener){
+        tokenizerListener = listener;
         tokenizer.process();
     }
     
@@ -126,77 +133,34 @@ public class Tokenizer extends DBModel {
            // cek apakah query menghasilkan result atau tidak
            if(queryResult.isBeforeFirst()){
                
-               
-               // pastikan row mulai dari awal
-               queryResult.first();
-               
-               /**
-                * Buat objek HashMap yang nantinya berfungsi untuk menyimpan 
-                * informasi kata dengan tipenya dimana kata menjadi key sedangkan 
-                * kode kata tersebut menjadi value dari hashmap tersebut
-               */
-               Map<String, String> items = new HashMap<>();
-               
-               
                while(queryResult.next()){
+                   
                    String kata = queryResult.getString("katadasar");
                    String kode = queryResult.getString("kode_katadasar");
                    
-                   items.put("kata", kata);
-                   items.put("kode", kode);
-               }
-               
-               
-               /**
-                * Lakukan itersi untuk melakukan pengecekan terhadap TOKEN asli
-                * (sebelum dilakukan tagging) apakah token tersebut memiliki
-                * sudah dikenali kelas katanya atau tidak
-                */
-               for(String t: TOKEN){
+                   /**
+                    * Untuk masing-masing kata yang ditemukan kelas katanya
+                    * lakukan proses modifikasi yaitu dengan menambahkan kelasnya 
+                    * di akhir dengan dippisahkan oleh tanda ';'
+                    */
                    
+                   // ambil index array dari kata yang bersangkutan
+                   int indexOfTheToken = TOKEN.indexOf(kata);
                    
-                   
-                   if(items.containsValue(t)){
-                       // jika token terdapat di dalam database, maka buat hash
-                       // dengan token sebagai key dan kode sebagai value
-                       TAGGED_TOKEN.add(items);
-                   } else {
-                       Map<String,String> newMap = new HashMap<>();
-                       // jika token tidak dikenali maka masukkan kata sebagai 
-                       // key dan UN sebagai value
-                       newMap.put("kata", t);
-                       newMap.put("kode", "UN");
-                       
-                       TAGGED_TOKEN.add(newMap);
-                   }
-                   
-                   // masukkan hashmap yang sudah dibuat sebelumnya ke dalam 
-                   // arraylist
-                   
-               }
-               
-           } else {
-               /**
-                * Jika hasil query dari database kosong, artinya semua token
-                * tidak memiliki kelas kata di dalam database maka lakukan
-                * tagging manual dengan memberi tag "UN"
-                */
-               for(String word : token){
-                   Map<String,String> map = new HashMap<>();
-                   
-                   // masukkan token ke dalam map dan beri tag UN
-                   map.put("kata", word);
-                   map.put("kode", "UN");
-                   
-                   TAGGED_TOKEN.add(map);
+                   // modifikasi isi array
+                   TOKEN.set(indexOfTheToken, kata + ";" + kode);
                }
            }
            
+           queryResult.close();
+           stmt.close();
+           SQL_CONNECTION.close();
+           
            // broadcast hasil tag
-           BROADCASTER.onTokenizeSuccess(TAGGED_TOKEN);
+           tokenizerListener.onTokenizeSuccess(TOKEN);
             
         } catch( SQLException e ){
-            BROADCASTER.onTokenizeFail(e.getMessage());
+            tokenizerListener.onTokenizeFail(e.getMessage());
         }
     }
 }
