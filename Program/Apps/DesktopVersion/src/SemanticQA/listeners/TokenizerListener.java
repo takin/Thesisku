@@ -1,4 +1,4 @@
-package SemanticQA.interfaces;
+package SemanticQA.listeners;
 
 import java.util.List;
 

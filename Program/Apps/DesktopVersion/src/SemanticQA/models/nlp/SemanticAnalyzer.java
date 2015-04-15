@@ -5,47 +5,45 @@
  */
 package SemanticQA.models.nlp;
 
-import SemanticQA.interfaces.ParserListener;
+import SemanticQA.listeners.SemanticAnalyzerListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
  * @author syamsul
  */
-public class Parser {
+public class SemanticAnalyzer {
     
     /**
      * Array list ini untuk menyimpan token asli dari hasil pos tagging dari 
      * kelas POSTagger
      */
-    private List<Map<String,String>> TAGGED_WORD;
+    private List<String> TAGGED_WORD;
     /**
      * Array list ini digunakan untuk menampung struktur baru yang dibentuk oleh 
      * proses parsing berdasarkan aturan-aturan tata bahasa indonesia yang sudah
      * disiapkan
      */
-    private List<Map<String,String>> TAGGED_PHRASE;
+    private List<String> TAGGED_PHRASE;
     /**
      * Interface untuk melakukan proses broadcasting hasil selama proses parsing
      * Hasil broadcast akan diterima oleh kelas ProcessQuestion untuk 
      * ditindak lanjuti
      */
-    private static ParserListener parserListener;
-    private static Parser PARSER;
+    private static SemanticAnalyzerListener parserListener;
+    private static SemanticAnalyzer PARSER;
     
-    public static Parser parse(List token){
+    public static SemanticAnalyzer analyze(List<String> token){
         
-        PARSER = new Parser();
-        
-        PARSER.TAGGED_WORD = new ArrayList<>();
+        PARSER = new SemanticAnalyzer();
+        PARSER.TAGGED_WORD = token;
         PARSER.TAGGED_PHRASE = new ArrayList<>();
         
         return PARSER;
     }
     
-    public static void then(ParserListener listener){
+    public static void then(SemanticAnalyzerListener listener){
         parserListener = listener;
         PARSER.generatePhrase();
     }
@@ -55,37 +53,20 @@ public class Parser {
      * @return boolean indicate wheater the sentence is valid or not
      */
     private void generatePhrase(){
-        
-        parserListener.onParseSuccess(TAGGED_WORD);
+        parserListener.onAnalyzeSuccess(TAGGED_WORD);
         
         int nextToken = 1;
         int tokenLength = TAGGED_WORD.size();
         
         for(int i = 0; i < tokenLength; i++){
             
-            Map currentWord = TAGGED_WORD.get(i);
-            Map nextWord = TAGGED_WORD.get(nextToken);
+            String[] currentWord = TAGGED_WORD.get(i).split(";");
+            String word = currentWord[0];
+            String wordType = (currentWord.length > 1) ? currentWord[1] : "UN";
             
-            String currentWordType = currentWord.get("kode").toString();
-            String nextWordType = nextWord.get("kode").toString();
-            
-            switch(currentWordType){
+            switch(wordType){
                 case "N" :
                     
-                    switch(nextWordType){
-                        case "N":
-                            
-                            if(tokenLength < nextToken){
-                                Map thirdToken = TAGGED_WORD.get((nextToken + 1));
-                                String thirdTokenType = thirdToken.get("kode").toString();
-                                
-                                if(thirdTokenType.equals("N")){
-                                    
-                                }
-                            }
-                            
-                            break;
-                    }
                     
                     break;
             }

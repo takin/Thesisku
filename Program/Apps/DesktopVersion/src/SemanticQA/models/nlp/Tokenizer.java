@@ -6,8 +6,10 @@
 
 package SemanticQA.models.nlp;
 
-import SemanticQA.interfaces.TokenizerListener;
-import SemanticQA.models.DBModel;
+import SemanticQA.helpers.Constant;
+import SemanticQA.listeners.TokenizerListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,7 +28,9 @@ import java.util.List;
  akan diberikan tag UN (unknwon)
  * @author syamsul
  */
-public class Tokenizer extends DBModel {
+public class Tokenizer {
+    
+    private static Connection SQL_CONNECTION;
     
     /**
      * Arraylist kalimat yang sudah dibentuk menjadi token per-kata.
@@ -50,13 +54,33 @@ public class Tokenizer extends DBModel {
     
     public static Tokenizer tokenize(String sentence){
         SENTENCE = sentence;
-        tokenizer = new Tokenizer();
-        return tokenizer;
+        return tokenizer = new Tokenizer();
     }
     
     public static void then(TokenizerListener listener){
         tokenizerListener = listener;
-        tokenizer.process();
+        
+        /**
+         * Lakukan inisialisasi koneksi ke database lexicon
+         * proses ini harus dilakukan setelah proses inisialisasi tokenizerListener
+         * agar apabila terjadi error pada tahapan ini, maka notifikasinya
+         * dapat di broadcast ke class subscriber
+         */
+         try{
+            Class.forName(Constant.DB_DRIVER).newInstance();
+            
+            SQL_CONNECTION = DriverManager.getConnection(Constant.DB_URL + Constant.DB_NAME, Constant.DB_USER, Constant.DB_PASS);
+        }
+        catch( IllegalAccessException | ClassNotFoundException | InstantiationException | SQLException e ){
+            tokenizerListener.onTokenizeFail("Koneksi ke database gagal karena: " + e.getMessage());
+        }
+        
+         /**
+          * kembalikan object Tokenizer
+          * hal ini harus dilakukan agar pada kelas pemanggil, Tokenizer
+          * dapat dilakukan method chaining (Tokenizer.tokenuze().then())
+          */
+         tokenizer.process();
     }
     
     /**

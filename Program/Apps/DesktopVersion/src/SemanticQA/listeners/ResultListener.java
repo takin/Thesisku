@@ -1,4 +1,4 @@
-package SemanticQA.interfaces;
+package SemanticQA.listeners;
 
 /**
  * Listener utama untuk memonitor hasil proses final

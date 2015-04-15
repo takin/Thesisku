@@ -5,9 +5,15 @@
  */
 package SemanticQA.controllers;
 
-import SemanticQA.models.Process;
-import SemanticQA.interfaces.ResultListener;
-import java.util.Scanner;
+import SemanticQA.helpers.Constant;
+import SemanticQA.listeners.OntologyLoaderListener;
+import SemanticQA.listeners.OntologyQueryListener;
+import SemanticQA.models.ontology.OntologyLoader;
+import SemanticQA.models.ontology.OntologyQuery;
+import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
+import de.derivo.sparqldlapi.QueryResult;
+import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.reasoner.BufferingMode;
 
 /**
  *
@@ -21,23 +27,48 @@ public class ThesisDesktopVersion {
     public static void main(String[] args) {
         
         
-        System.out.print("Masukkan pertanyaan: ");
-        Scanner scan = new Scanner(System.in);
+//        System.out.print("Masukkan pertanyaan: ");
+//        Scanner scan = new Scanner(System.in);
         
-        String sentence = scan.nextLine();
+//        String sentence = scan.nextLine();
         
-        Process.theQuestion(sentence).then(new ResultListener(){
-            
+//        Process.theQuestion(sentence).then(new ResultListener(){
+//            
+//            @Override
+//            public void onSuccess(String answer){
+//                cetak(answer);
+//            }
+//            
+//            @Override
+//            public void onFail(String reason){
+//                cetak(reason);
+//            }
+//            
+//        });
+        
+        OntologyLoader.load(Constant.ONTOLOGIES, Constant.ONTO_MERGED_URI);
+        OntologyLoader.then(new OntologyLoaderListener() {
+
             @Override
-            public void onSuccess(String answer){
-                cetak(answer);
+            public void onOntologyLoaded(OWLOntology ontology) {
+                OntologyQuery.build(ontology, new PelletReasoner(ontology, BufferingMode.BUFFERING));
+                OntologyQuery.then(new OntologyQueryListener() {
+
+                    @Override
+                    public void onQueryExecuted(String result) {
+                        System.out.println(result);
+                    }
+
+                    @Override
+                    public void onQueryExecutionFail(String reason) {
+                        cetak(reason);
+                    }
+                });
             }
-            
+
             @Override
-            public void onFail(String reason){
-                cetak(reason);
+            public void onOntologyLoadFail(String reason) {
             }
-            
         });
     }
     

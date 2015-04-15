@@ -5,39 +5,44 @@
  */
 package SemanticQA.models;
 
-import SemanticQA.interfaces.ParserListener;
-import SemanticQA.interfaces.ResultListener;
-import SemanticQA.interfaces.TokenizerListener;
-import SemanticQA.models.nlp.Parser;
+import SemanticQA.helpers.Constant;
+import SemanticQA.listeners.OntologyLoaderListener;
+import SemanticQA.listeners.OntologyQueryListener;
+import SemanticQA.listeners.SemanticAnalyzerListener;
+import SemanticQA.listeners.ResultListener;
+import SemanticQA.listeners.TokenizerListener;
+import SemanticQA.models.nlp.SemanticAnalyzer;
 import SemanticQA.models.nlp.Tokenizer;
+import SemanticQA.models.ontology.OntologyLoader;
+import SemanticQA.models.ontology.OntologyQuery;
+import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
+import de.derivo.sparqldlapi.QueryResult;
 import java.util.List;
+import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.reasoner.BufferingMode;
 
 /**
  *
  * @author syamsul
  */
-public class Process implements TokenizerListener, ParserListener {
+public class Process implements TokenizerListener, SemanticAnalyzerListener, OntologyQueryListener, OntologyLoaderListener {
     
-    private static Process process;
     private static String theQuestion;
     private static ResultListener resultListener;
     
     public static Process theQuestion(String question){
         theQuestion = question;
-        
-        process = new Process();
-        return process;
+        return new Process();
     }
     
     public static void then(ResultListener listener){
         resultListener = listener;
-        
-        Tokenizer.tokenize(theQuestion).then(process);
+        Tokenizer.tokenize(theQuestion).then(new Process());
     }
 
     @Override
     public void onTokenizeSuccess(List<String> taggedToken) {
-        Parser.parse(taggedToken).then(process);
+        SemanticAnalyzer.analyze(taggedToken).then(this);
     }
 
     @Override
@@ -46,13 +51,35 @@ public class Process implements TokenizerListener, ParserListener {
     }
 
     @Override
-    public void onParseSuccess(List parseTree) {
-        
+    public void onAnalyzeSuccess(List parseTree) {
+        OntologyLoader.load(Constant.ONTOLOGIES,Constant.ONTO_MERGED_URI).then(this);
     }
 
     @Override
-    public void onParseFail(String reason) {
+    public void onAnalyzeFail(String reason) {
         resultListener.onFail(reason);
+    }
+
+    @Override
+    public void onQueryExecuted(String result) {
+        System.out.println("execution result: " + result);
+    }
+
+    @Override
+    public void onQueryExecutionFail(String reason) {
+        resultListener.onFail(reason);
+    }
+
+    @Override
+    public void onOntologyLoaded(OWLOntology ontology) {
+        
+        OntologyQuery.build(ontology, new PelletReasoner(ontology, BufferingMode.BUFFERING));
+        OntologyQuery.then(this);
+    }
+
+    @Override
+    public void onOntologyLoadFail(String reason) {
+        System.out.println(reason);
     }
     
 }
