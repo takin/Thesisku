@@ -6,7 +6,7 @@
 package SemanticQA.models.nlp;
 
 import SemanticQA.listeners.SemanticAnalyzerListener;
-import java.util.ArrayList;
+import SemanticQA.listeners.TokenizerListener;
 import java.util.List;
 
 /**
@@ -15,66 +15,39 @@ import java.util.List;
  */
 public class SemanticAnalyzer {
     
-    /**
-     * Array list ini untuk menyimpan token asli dari hasil pos tagging dari 
-     * kelas POSTagger
-     */
-    private List<String> TAGGED_WORD;
-    /**
-     * Array list ini digunakan untuk menampung struktur baru yang dibentuk oleh 
-     * proses parsing berdasarkan aturan-aturan tata bahasa indonesia yang sudah
-     * disiapkan
-     */
-    private List<String> TAGGED_PHRASE;
-    /**
-     * Interface untuk melakukan proses broadcasting hasil selama proses parsing
-     * Hasil broadcast akan diterima oleh kelas ProcessQuestion untuk 
-     * ditindak lanjuti
-     */
-    private static SemanticAnalyzerListener parserListener;
-    private static SemanticAnalyzer PARSER;
+    private static String sentenceToAnalyze;
     
-    public static SemanticAnalyzer analyze(List<String> token){
-        
-        PARSER = new SemanticAnalyzer();
-        PARSER.TAGGED_WORD = token;
-        PARSER.TAGGED_PHRASE = new ArrayList<>();
-        
-        return PARSER;
+    public SemanticAnalyzer(String sentence){
+        sentenceToAnalyze = sentence;
     }
     
-    public static void then(SemanticAnalyzerListener listener){
-        parserListener = listener;
-        PARSER.generatePhrase();
+    public static SemanticAnalyzer analyze(String sentence){
+        return new SemanticAnalyzer(sentence);
+    }
+    
+    public static void then(final SemanticAnalyzerListener listener){
+     
+        Tokenizer.tokenize(sentenceToAnalyze).then(new TokenizerListener() {
+
+            @Override
+            public void onTokenizeSuccess(List<String> taggedToken) {
+                analyze(taggedToken);
+            }
+
+            @Override
+            public void onTokenizeFail(String reason) {
+                listener.onAnalyzeFail(reason);
+            }
+        });
     }
     
     /**
      * Method untuk melalukan validasi terhadap kalimat yang diinputkan
      * @return boolean indicate wheater the sentence is valid or not
      */
-    private void generatePhrase(){
-        parserListener.onAnalyzeSuccess(TAGGED_WORD);
+    private static void analyze(List<String> taggedWord){
         
-        int nextToken = 1;
-        int tokenLength = TAGGED_WORD.size();
         
-        for(int i = 0; i < tokenLength; i++){
-            
-            String[] currentWord = TAGGED_WORD.get(i).split(";");
-            String word = currentWord[0];
-            String wordType = (currentWord.length > 1) ? currentWord[1] : "UN";
-            
-            switch(wordType){
-                case "N" :
-                    
-                    
-                    break;
-            }
-            
-            if(nextToken < (TAGGED_WORD.size() - 1)){
-                nextToken += 1;
-            }
-        }
         
     }
 }

@@ -10,13 +10,10 @@ import SemanticQA.listeners.OntologyLoaderListener;
 import SemanticQA.listeners.OntologyQueryListener;
 import SemanticQA.listeners.SemanticAnalyzerListener;
 import SemanticQA.listeners.ResultListener;
-import SemanticQA.listeners.TokenizerListener;
 import SemanticQA.models.nlp.SemanticAnalyzer;
-import SemanticQA.models.nlp.Tokenizer;
 import SemanticQA.models.ontology.OntologyLoader;
 import SemanticQA.models.ontology.OntologyQuery;
 import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
-import de.derivo.sparqldlapi.QueryResult;
 import java.util.List;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.reasoner.BufferingMode;
@@ -25,29 +22,24 @@ import org.semanticweb.owlapi.reasoner.BufferingMode;
  *
  * @author syamsul
  */
-public class Process implements TokenizerListener, SemanticAnalyzerListener, OntologyQueryListener, OntologyLoaderListener {
+public class Process implements SemanticAnalyzerListener, OntologyQueryListener, OntologyLoaderListener {
     
     private static String theQuestion;
     private static ResultListener resultListener;
+    private static Process process;
+    
+    public Process(String question){
+       theQuestion = question;
+    }
     
     public static Process theQuestion(String question){
-        theQuestion = question;
-        return new Process();
+        return process = new Process(question);
     }
     
     public static void then(ResultListener listener){
         resultListener = listener;
-        Tokenizer.tokenize(theQuestion).then(new Process());
-    }
-
-    @Override
-    public void onTokenizeSuccess(List<String> taggedToken) {
-        SemanticAnalyzer.analyze(taggedToken).then(this);
-    }
-
-    @Override
-    public void onTokenizeFail(String reason) {
-        resultListener.onFail(reason);
+        SemanticAnalyzer.analyze(theQuestion);
+        SemanticAnalyzer.then(process);
     }
 
     @Override
@@ -74,7 +66,7 @@ public class Process implements TokenizerListener, SemanticAnalyzerListener, Ont
     public void onOntologyLoaded(OWLOntology ontology) {
         
         OntologyQuery.build(ontology, new PelletReasoner(ontology, BufferingMode.BUFFERING));
-        OntologyQuery.then(this);
+        OntologyQuery.then("Bupati",this);
     }
 
     @Override

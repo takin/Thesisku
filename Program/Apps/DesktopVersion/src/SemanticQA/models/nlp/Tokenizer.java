@@ -42,9 +42,7 @@ public class Tokenizer {
      * misalnya token SIAPA, setelah proses TAGGing akan dimodifikasi menjadi 
      * SIAPA;PRON
      */
-    private final List<String> TOKEN = new ArrayList<>();
-    
-    private static Tokenizer tokenizer;
+    private static List<String> TOKEN;
     
     // listener untuk dikirimkan ke kelas Observer (dalam hal ini kelas Process)
     private static TokenizerListener tokenizerListener;
@@ -52,9 +50,13 @@ public class Tokenizer {
     // string kalimat yang akan di tagging
     private static String SENTENCE;
     
-    public static Tokenizer tokenize(String sentence){
+    public Tokenizer(String sentence){
+        TOKEN = new ArrayList<>();
         SENTENCE = sentence;
-        return tokenizer = new Tokenizer();
+    }
+    
+    public static Tokenizer tokenize(String sentence){
+        return new Tokenizer(sentence);
     }
     
     public static void then(TokenizerListener listener){
@@ -80,14 +82,14 @@ public class Tokenizer {
           * hal ini harus dilakukan agar pada kelas pemanggil, Tokenizer
           * dapat dilakukan method chaining (Tokenizer.tokenuze().then())
           */
-         tokenizer.process();
+         process();
     }
     
     /**
      * 
      * @param sentence -> kalimat yang akan di tag 
      */
-    private void process(){
+    private static void process(){
         
         try{
             /**

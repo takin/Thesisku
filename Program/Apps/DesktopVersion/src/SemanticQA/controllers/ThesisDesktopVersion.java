@@ -5,13 +5,20 @@
  */
 package SemanticQA.controllers;
 
+import SemanticQA.models.Process;
 import SemanticQA.helpers.Constant;
 import SemanticQA.listeners.OntologyLoaderListener;
 import SemanticQA.listeners.OntologyQueryListener;
+import SemanticQA.listeners.ResultListener;
+import SemanticQA.listeners.SemanticAnalyzerListener;
+import SemanticQA.listeners.TokenizerListener;
+import SemanticQA.models.nlp.SemanticAnalyzer;
+import SemanticQA.models.nlp.Tokenizer;
 import SemanticQA.models.ontology.OntologyLoader;
 import SemanticQA.models.ontology.OntologyQuery;
 import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
-import de.derivo.sparqldlapi.QueryResult;
+import java.util.List;
+import java.util.Scanner;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.reasoner.BufferingMode;
 
@@ -27,32 +34,35 @@ public class ThesisDesktopVersion {
     public static void main(String[] args) {
         
         
-//        System.out.print("Masukkan pertanyaan: ");
-//        Scanner scan = new Scanner(System.in);
+        System.out.print("Masukkan pertanyaan: ");
+        Scanner scan = new Scanner(System.in);
         
-//        String sentence = scan.nextLine();
+        String sentence = scan.nextLine();
         
-//        Process.theQuestion(sentence).then(new ResultListener(){
-//            
-//            @Override
-//            public void onSuccess(String answer){
-//                cetak(answer);
-//            }
-//            
-//            @Override
-//            public void onFail(String reason){
-//                cetak(reason);
-//            }
-//            
-//        });
-        
-        OntologyLoader.load(Constant.ONTOLOGIES, Constant.ONTO_MERGED_URI);
+        SemanticAnalyzer.analyze(sentence).then(new SemanticAnalyzerListener() {
+
+            @Override
+            public void onAnalyzeSuccess(List parseTree) {
+                
+            }
+
+            @Override
+            public void onAnalyzeFail(String reason) {
+                cetak(reason);
+            }
+        });
+
+    }
+    
+    public static void ontology(){
+        OntologyLoader.load(Constant.ONTOGOV_URL);
         OntologyLoader.then(new OntologyLoaderListener() {
 
             @Override
             public void onOntologyLoaded(OWLOntology ontology) {
+                
                 OntologyQuery.build(ontology, new PelletReasoner(ontology, BufferingMode.BUFFERING));
-                OntologyQuery.then(new OntologyQueryListener() {
+                OntologyQuery.then("<http://www.ntbprov.go.id/semweb/resource/lombok_timur>",new OntologyQueryListener() {
 
                     @Override
                     public void onQueryExecuted(String result) {

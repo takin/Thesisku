@@ -1,0 +1,1 @@
+siapakah bupati kabupaten lombok timur ? -> PropertyValue(?x,?y,a:lombok_timur), Type(?x,b:Bupati)
