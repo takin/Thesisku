@@ -10,6 +10,6 @@ package SemanticQA.listeners;
  * @author syamsul
  */
 public interface OntologyQueryListener {
-    public void onQueryExecuted(String result);
-    public void onQueryExecutionFail(String reason);
+    void onQueryExecuted(String result);
+    void onQueryExecutionFail(String reason);
 }

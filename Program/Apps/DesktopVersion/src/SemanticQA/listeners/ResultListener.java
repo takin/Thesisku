@@ -6,7 +6,7 @@ package SemanticQA.listeners;
  */
 public interface ResultListener {
     
-    public void onSuccess(String answer);
-    public void onFail(String reason);
+    void onSuccess(String answer);
+    void onFail(String reason);
     
 }

@@ -16,6 +16,7 @@ import java.util.List;
 public class SemanticAnalyzer {
     
     private static String sentenceToAnalyze;
+    private static SemanticAnalyzerListener subscriber;
     
     public SemanticAnalyzer(String sentence){
         sentenceToAnalyze = sentence;
@@ -26,6 +27,8 @@ public class SemanticAnalyzer {
     }
     
     public static void then(final SemanticAnalyzerListener listener){
+        
+        subscriber = listener;
      
         Tokenizer.tokenize(sentenceToAnalyze).then(new TokenizerListener() {
 
@@ -47,7 +50,9 @@ public class SemanticAnalyzer {
      */
     private static void analyze(List<String> taggedWord){
         
-        
+        for(String w: taggedWord){
+            System.out.println(w);
+        }
         
     }
 }

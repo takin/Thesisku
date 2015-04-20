@@ -8,7 +8,7 @@ import java.util.List;
  */
 public interface SemanticAnalyzerListener {
     
-    public void onAnalyzeSuccess(List parseTree);
-    public void onAnalyzeFail(String reason);
+    void onAnalyzeSuccess(List parseTree);
+    void onAnalyzeFail(String reason);
     
 }

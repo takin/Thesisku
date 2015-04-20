@@ -8,7 +8,7 @@ import java.util.List;
  */
 public interface TokenizerListener {
     
-    public void onTokenizeSuccess(List<String> taggedToken);
-    public void onTokenizeFail(String reason);
+    void onTokenizeSuccess(List<String> taggedToken);
+    void onTokenizeFail(String reason);
     
 }

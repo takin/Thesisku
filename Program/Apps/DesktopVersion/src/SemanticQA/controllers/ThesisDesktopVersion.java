@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package SemanticQA.controllers;
 
 import SemanticQA.models.Process;
@@ -11,13 +6,16 @@ import SemanticQA.listeners.OntologyLoaderListener;
 import SemanticQA.listeners.OntologyQueryListener;
 import SemanticQA.listeners.ResultListener;
 import SemanticQA.listeners.SemanticAnalyzerListener;
+import SemanticQA.listeners.StemmingListener;
 import SemanticQA.listeners.TokenizerListener;
 import SemanticQA.models.nlp.SemanticAnalyzer;
+import SemanticQA.models.nlp.Stemming;
 import SemanticQA.models.nlp.Tokenizer;
 import SemanticQA.models.ontology.OntologyLoader;
 import SemanticQA.models.ontology.OntologyQuery;
 import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.reasoner.BufferingMode;
@@ -39,15 +37,20 @@ public class ThesisDesktopVersion {
         
         String sentence = scan.nextLine();
         
-        SemanticAnalyzer.analyze(sentence).then(new SemanticAnalyzerListener() {
+        Stemming.stem(sentence).then(new StemmingListener() {
 
             @Override
-            public void onAnalyzeSuccess(List parseTree) {
-                
+            public void onStemmingMatch(Map<String,String> finalWord) {
+                cetak(finalWord.get("kataAsli") + " -> " + finalWord.get("result") + " -> " + finalWord.get("kodeKata"));
             }
 
             @Override
-            public void onAnalyzeFail(String reason) {
+            public void onStemmingNotMatch(String originalWord) {
+                cetak(originalWord);
+            }
+
+            @Override
+            public void onStemmingFailed(String reason) {
                 cetak(reason);
             }
         });

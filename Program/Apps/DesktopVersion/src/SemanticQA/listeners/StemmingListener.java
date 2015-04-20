@@ -5,14 +5,14 @@
  */
 package SemanticQA.listeners;
 
-import org.semanticweb.owlapi.model.OWLOntology;
+import java.util.Map;
 
 /**
  *
  * @author syamsul
  */
-
-public interface OntologyLoaderListener {
-    void onOntologyLoaded(OWLOntology ontology);
-    void onOntologyLoadFail(String reason);
+public interface StemmingListener {
+    void onStemmingMatch(Map<String,String> result);
+    void onStemmingNotMatch(String originalWord);
+    void onStemmingFailed(String reason);
 }
