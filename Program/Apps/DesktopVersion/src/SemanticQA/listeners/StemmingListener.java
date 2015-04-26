@@ -12,7 +12,7 @@ import java.util.Map;
  * @author syamsul
  */
 public interface StemmingListener {
-    void onStemmingMatch(Map<String,String> result);
+    void onStemmingMatch(Map<String,Object> result);
     void onStemmingNotMatch(String originalWord);
     void onStemmingFailed(String reason);
 }

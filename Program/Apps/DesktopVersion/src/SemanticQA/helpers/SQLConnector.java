@@ -19,10 +19,16 @@ public class SQLConnector {
     protected static Connection CONNECTION;
     protected static Statement STATEMENT;
     
-    public SQLConnector() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        Class.forName(Constant.DB_DRIVER).newInstance();
-        CONNECTION = DriverManager.getConnection(Constant.DB_URL + Constant.DB_NAME, Constant.DB_USER, Constant.DB_PASS);
-        STATEMENT = CONNECTION.createStatement();
+    public SQLConnector(){
+        try {
+            Class.forName(Constant.DB_DRIVER).newInstance();
+            CONNECTION = DriverManager.getConnection(Constant.DB_URL + Constant.DB_NAME, Constant.DB_USER, Constant.DB_PASS);
+            STATEMENT = CONNECTION.createStatement();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+            System.out.println(e.getCause());
+        }
+        
+        
     }
     
 }

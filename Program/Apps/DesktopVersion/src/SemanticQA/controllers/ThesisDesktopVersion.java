@@ -40,17 +40,20 @@ public class ThesisDesktopVersion {
         Stemming.stem(sentence).then(new StemmingListener() {
 
             @Override
-            public void onStemmingMatch(Map<String,String> finalWord) {
-                cetak(finalWord.get("kataAsli") + " -> " + finalWord.get("result") + " -> " + finalWord.get("kodeKata"));
+            public void onStemmingMatch(Map<String,Object> finalWord) {
+                System.out.println(finalWord);
+//                cetak(finalWord.get(Stemming.ORIGINAL_WORD).toString() + " -> " + finalWord.get(Stemming.STEMMED_WORD).toString() + " -> " + finalWord.get(Stemming.WORD_TYPE).toString());
             }
 
             @Override
             public void onStemmingNotMatch(String originalWord) {
+                System.out.println("word did not match");
                 cetak(originalWord);
             }
 
             @Override
             public void onStemmingFailed(String reason) {
+                System.out.println("stemming failed");
                 cetak(reason);
             }
         });
