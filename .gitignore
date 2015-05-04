@@ -14,6 +14,8 @@ Bahan/*
 Odt/*
 Program/API/Jena/*
 Program/Ontologi/v*.*/*
+/Program/Apps/*.meta*
+/Program/Apps/*.recomm*
 /Program/Apps/DesktopVersion/nbproject/private/
 /Program/Apps/DesktopVersion/build/
 /Program/Apps/DesktopVersion/dist/

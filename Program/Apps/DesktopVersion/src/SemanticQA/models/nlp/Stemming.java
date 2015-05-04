@@ -93,6 +93,8 @@ public class Stemming extends SQLConnector {
     
     private static boolean process() throws SQLException{
         
+        String stageWord = "";
+        
         RESULT.put(ORIGINAL_WORD, wordToStem);
         
         /** ----------------------------------------------------------------------------------
@@ -103,7 +105,9 @@ public class Stemming extends SQLConnector {
          * Jika infectionSuffix() true, artinya hash map memiliki key TOKEN_TYPE
          * maka proses berhenti sampai di sini
          * --------------------------------------------------------------------------*/
-        if(infectionSuffix()){
+        stageWord = wordToStem;
+        
+        if(infectionSuffix(stageWord)){
             RESULT.put(STEMMED_WORD, STEMMING_SEQUENCE);
             return true;
         }
@@ -113,7 +117,9 @@ public class Stemming extends SQLConnector {
          * ke stage berikutnya yaitu pemotongan derivation suffix dan lakukan 
          * proses pengecekan dan penggabungan sesuai dengan langkah pertama
          *-------------------------------------------------------------------------*/
-        if(derivationSuffix()){ 
+        stageWord = STEMMING_SEQUENCE.get(0);
+        
+        if(derivationSuffix(stageWord)){ 
             RESULT.put(STEMMED_WORD, STEMMING_SEQUENCE);
             return true;
         }
@@ -125,21 +131,23 @@ public class Stemming extends SQLConnector {
          * 
          * Jika pada langkah ini masih belum berhasil, maka kembalikan kata 
          * sesuai dengan aslinya (kelas kata tidak dikenali)
-         * ------------------------------------------------------------------*/    
-        return derivationPrefix();
+         * ------------------------------------------------------------------*/
+        stageWord = (STEMMING_SEQUENCE.size() > 1) ? STEMMING_SEQUENCE.get(1) : STEMMING_SEQUENCE.get(0);
+        
+        return derivationPrefix(stageWord, null, 1);
     }
     
     /** ------------------------------------------------------------------------
      * @param word -> kata masukan yang akan diproses suffixnya
      * @return array String dengan panjang 2 yang terdiri dari ['kata','kode']
      * ------------------------------------------------------------------------*/
-    private static boolean infectionSuffix() throws SQLException{
+    private static boolean infectionSuffix(String word) throws SQLException{
         
         //Pattern dengan pola akhiran -kah, -lah, -ku, -mu, -pun dan -nya
         String infectionSuffixPattern = "([kl]ah|[km]u|pun|nya)$";
         
         // cek apakah kata match dengan pola di atas
-        Matcher infectionMatcher = Pattern.compile("^[a-zA-Z]+" + infectionSuffixPattern).matcher(wordToStem);
+        Matcher infectionMatcher = Pattern.compile("^[a-zA-Z]+" + infectionSuffixPattern).matcher(word);
         
         /** ------------------------------------------------------------------------------------
          * selalu lakukan pengisian stemming sequence pertama dengan kata yang belum di proses
@@ -149,7 +157,7 @@ public class Stemming extends SQLConnector {
          * jika kata asli (wordToStem) match dengan pola yang sudah ditentukan di atas
          * maka isi dari stemming sequence pertama diganti dengan kata hasil stemming
          * ------------------------------------------------------------------------------------*/
-        STEMMING_SEQUENCE.add(wordToStem);
+        STEMMING_SEQUENCE.add(word);
         
         /** -------------------------------------------------------------------------
          * Jika pola kata sesuai dengan pola yang telah ditentukan sebelumnya
@@ -159,7 +167,7 @@ public class Stemming extends SQLConnector {
          * --------------------------------------------------------------------------*/
         if(infectionMatcher.matches()){
             
-            String stemmedWord = wordToStem.replaceAll(infectionSuffixPattern, "");
+            String stemmedWord = word.replaceAll(infectionSuffixPattern, "");
             STEMMING_SEQUENCE.set(0,stemmedWord);
                    
             ResultSet res = STATEMENT.executeQuery(SQL_QUERY + stemmedWord + "'");
@@ -179,22 +187,16 @@ public class Stemming extends SQLConnector {
                 
                 return true;
             }
+            // proses selesai karena kata yang telah di stem tidak ditemukan
+            // di dalam database
             return false;
         }
-        
+        // proses selesai karena kata tidak mengandung akhiran sesuai dengan 
+        // pola yang ditentukan
         return false;
     }
     
-    private static boolean derivationSuffix() throws SQLException{
-        
-        String word = STEMMING_SEQUENCE.get(0);
-        
-        /** ----------------------------------------------------------------------------
-         * Sama halnya dengan langkah infectionSuffix(), isikan nilai stemming sequence
-         * ke 2 dengan data asli yang akan di stem (isi sequence pertama)
-         * jika kata berhasil di stem, maka ganti isinya dengan kata yang telah di stem
-         * -----------------------------------------------------------------------------*/
-        STEMMING_SEQUENCE.add(word);
+    private static boolean derivationSuffix(String word) throws SQLException{
         
         String derivationSuffixPattern = "(i|an)$";
         
@@ -214,18 +216,9 @@ public class Stemming extends SQLConnector {
             // buang akhiran -i atau -an
             String newMatch = word.replaceAll(derivationSuffixPattern,"");
             
-            // lakukan pengecekan ke dalam database
-            ResultSet res = STATEMENT.executeQuery(SQL_QUERY + newMatch + "'");
-
-            if(res.isBeforeFirst()){
-                res.absolute(1);
-
-                RESULT.put(WORD_TYPE, res.getString("kode_katadasar"));
-                STEMMING_SEQUENCE.set(1,newMatch);
-                
+            if(typeIsFound(newMatch)){
                 return true;
-
-            } 
+            }
             
             // ambil karakter terakhir dari kata yang sudah di stem
             char lastCharacter = newMatch.charAt(newMatch.length() - 1);
@@ -234,28 +227,30 @@ public class Stemming extends SQLConnector {
              * adalah -k maka buang -k dan cek kembali ke dalam database
              * ----------------------------------------------------------------*/
             if(removedTail.equals("an") && lastCharacter == 'k'){
-                
                 // buang akhiran k
                 newMatch = newMatch.replaceAll("k$", "");
-                
-                //Lakukan pencarian ke dalam database
-                res = STATEMENT.executeQuery(SQL_QUERY + newMatch + "'");
-
-                if(res.isBeforeFirst()){
-                    res.absolute(1);
-                    RESULT.put(WORD_TYPE, res.getString("kode_katadasar"));
-                    STEMMING_SEQUENCE.set(1,newMatch);
-                    
-                    return true;
-                }
-                return false;
             }
+            
+            if(typeIsFound(newMatch)){
+                return true;
+            }
+            /** ----------------------------------------------------------------
+             * masukkan kata yang sudah di stemming meskipun belum ditemukan 
+             * kelas katanya, kata ini nantinya akan digunakan pada tahapan 
+             * selanjutnya yaitu tahapan prefix removal
+             * ----------------------------------------------------------------*/
+            STEMMING_SEQUENCE.add(newMatch);
+            
+            // proses selesai karena kata sudah di stemming namun belum ditemukan
+            // kelas katanya
             return false;
         }
+        
+        // proses selesai karena kata tidak mengandung unsur akhiran -i, -an, atau -kan
         return false;
     }
     
-    private static boolean derivationPrefix(){
+    private static boolean derivationPrefix(String word, String previousPrefix, int iteration) throws SQLException{
         
         /** --------------------------------------------------------------------
          * Pada stage ini, langkah yang harus ditempuh adalah:
@@ -266,33 +261,93 @@ public class Stemming extends SQLConnector {
          * - Jika tidak ada, maka lakukan proses pemotongan prefix sesuai dengan
          *   kombinasi yang telah ditentukan
          * --------------------------------------------------------------------*/
-        
-        String word = STEMMING_SEQUENCE.get(1);
-        
-        /** --------------------------------------------------------------------
-         * Note: proses pembandingan wordToStem dengan word harus dilakukan 
-         * terlebih dahulu karena ini menandakan apakah word sudah mengalami
-         * pemotongan suffix atau belum
-         * jika bernilai false, artinya word telah mengalami pemotongan, maka 
-         * proses selanjtnya adalah pengecekan kombinasi awalan akhiran yang 
-         * diizinkan
-         * --------------------------------------------------------------------*/
-        if(word.equals(wordToStem) || isProcessableWord(word)){
+        if(isProcessableWord(word) && isValidPrefix(word)){
             
-            /**
+            String stemmedWord = "";
+            
+            /** ----------------------------------------------------------------
              * Pada stage ini proses dilakukan maksimal hanya tiga kali yaitu 
              * penghapusan prefix 1 + prefix 2 + prefix 3
              * 
              * masing-masing dengan memperhatikan urutan kemunculan kata prefix
-             */
+             * ---------------------------------------------------------------*/
             
-            // cek apakah prefix merupakah [refix yang diizinkan atau tidak 
-            if(isValidPrefix(word)){
+            if(iteration <= 3){
                 
+                String currentPrefix = word.substring(0, 2);
+                
+                if(!currentPrefix.equals(previousPrefix)){
+                    
+                    stemmedWord = word.substring(2, word.length());
+                    
+                    if(typeIsFound(stemmedWord)){
+                        return true;
+                    }
+                    
+                    char firstChar = stemmedWord.charAt(0);
+                    char secondChar = stemmedWord.charAt(1);
+
+                    char[] vowel = {'a','i','u','e','o'};
+                    char[] prefixPeWithoutChange = {'d','j','c','z','b','f','v'};
+
+                    switch(currentPrefix){
+                        case "me" :
+                            if(firstChar == 'n' && secondChar == 'g'){
+                                
+                                // jika me- diikuti dengan -ng maka buang -ng
+                                stemmedWord = stemmedWord.substring(2, stemmedWord.length());
+                                
+                            } else if(firstChar == 'm') {
+                                
+                                // jika kata me- diikuti dengan -m maka buang -m
+                                stemmedWord = stemmedWord.substring(1, stemmedWord.length());
+                                
+                            } else if(firstChar == 'n' && secondChar == 'y'){
+                                
+                                // jika me- diikuti dengan -ny maka ganti -ny dengan -s
+                                stemmedWord = "s" + stemmedWord.substring(2, stemmedWord.length());
+                                
+                            } else if(firstChar == 'n' && Arrays.binarySearch(vowel, secondChar) != -1){
+                                
+                                // jika me- diikuti dengan -n dan huruf vokal, maka hanti dengan -t
+                                stemmedWord = "t" + stemmedWord.substring(1, stemmedWord.length());
+                                
+                            }
+                            
+                            break;
+
+                        case "pe":
+                            System.out.println(stemmedWord);
+                            if(firstChar == 'r' || ((firstChar == 'n' || firstChar == 'm') && Arrays.binarySearch(prefixPeWithoutChange, secondChar) != -1)){
+                                stemmedWord = stemmedWord.substring(1,stemmedWord.length());
+                            } else if(firstChar == 'n' && Arrays.binarySearch(vowel, secondChar) != -1){
+                                stemmedWord = "t" + stemmedWord.substring(1, stemmedWord.length());
+                            }
+
+                            break;
+                    }
+                    
+                    if(typeIsFound(stemmedWord)){
+                        return true;
+                    }
+                    
+                    /**---------------------------------------------------------
+                     * Jika tipe kata belum ditemukan, maka lakukan pengulanga
+                     * proses secara rekursif dengan nilai masukan adalah 
+                     * kata hasil stemming yang baru dan awalan yang baru
+                     * serta iterasi selanjutnya
+                     * --------------------------------------------------------*/
+                    derivationPrefix(stemmedWord, currentPrefix, iteration++);
+                }
+                // proses selesai karena prefix saat ini sama dengan prefix yang
+                // sudah dihilangkan sebelumnya
+                return false;
             }
+            // proses selesai karena sudah 3x proses pembuangan prefix
             return false;
         }
-        
+        // proses selesai karena kombinasi awalan dan akhiran kata tidak dizinkan 
+        // atau awalan kata bukan merupakan awalan yang diizinkan
         return false;
     }
     
@@ -303,7 +358,7 @@ public class Stemming extends SQLConnector {
         String[] tempArray = {"di","ke","se","be","me","te","pe"};
         List<String> validPrefix = new ArrayList<>(Arrays.asList(tempArray));
         
-        String prefix = word.substring(0, 1);
+        String prefix = word.substring(0, 2);
         
         return (validPrefix.contains(prefix));
     }
@@ -312,7 +367,7 @@ public class Stemming extends SQLConnector {
         
         String[] pattern = {
             "^([bks]e)[a-zA-Z]+(i)$",
-            "^(di|me)[a-zA-Z]+(an)$",
+            "^(di|me|te)[a-zA-Z]+(an)$",
             "^(ke|se)[a-zA-Z]+(kan)$"
         };
         
@@ -326,4 +381,23 @@ public class Stemming extends SQLConnector {
         
         return true;
     }
+    
+    private static boolean typeIsFound(String word) throws SQLException{
+       
+        ResultSet res = STATEMENT.executeQuery(SQL_QUERY + word + "'");
+
+        if(res.isBeforeFirst()){
+            res.absolute(1);
+
+            String wordType = res.getString("kode_katadasar");
+
+            STEMMING_SEQUENCE.add(word);
+            RESULT.put(STEMMED_WORD, STEMMING_SEQUENCE);
+            RESULT.put(WORD_TYPE, wordType);
+
+            return true;
+        }
+        return false;
+    }
+    
 }
