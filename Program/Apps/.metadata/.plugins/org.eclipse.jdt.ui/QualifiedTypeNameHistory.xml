@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
-<fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="java.util.regex.Matcher"/>
 <fullyQualifiedTypeName name="java.util.regex.Pattern"/>
-<fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="SemanticQA.models.nlp.Stemming"/>
+<fullyQualifiedTypeName name="SemanticQA.listeners.ResultListener"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="java.nio.channels.NetworkChannel"/>
+<fullyQualifiedTypeName name="SemanticQA.listeners.StemmingListener"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="SemanticQA.models.nlp.Tokenizer"/>
+<fullyQualifiedTypeName name="SemanticQA.listeners.TokenizerListener"/>
+<fullyQualifiedTypeName name="SemanticQA.models.nlp.SemanticAnalyzer"/>
+<fullyQualifiedTypeName name="SemanticQA.listeners.SemanticAnalyzerListener"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="SemanticQA.interfaces.DatabaseConnector"/>
 </qualifiedTypeNameHistroy>

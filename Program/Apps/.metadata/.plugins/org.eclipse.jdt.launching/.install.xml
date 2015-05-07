@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <dirs>
 <entry loc="/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home" stamp="1428689639000"/>
+<entry loc="/usr/lib/jvm/java-7-openjdk-amd64" stamp="1430896221000"/>
+<entry loc="/Volumes/Server/tools/jre1.8.0_45" stamp="1428686556000"/>
+<entry loc="/home/syamsul/Downloads/jre1.8.0_45" stamp="1428686556000"/>
 </dirs>

@@ -1,22 +1,18 @@
 package SemanticQA.controllers;
 
-import SemanticQA.models.Process;
 import SemanticQA.helpers.Constant;
-import SemanticQA.listeners.OntologyLoaderListener;
-import SemanticQA.listeners.OntologyQueryListener;
-import SemanticQA.listeners.ResultListener;
-import SemanticQA.listeners.SemanticAnalyzerListener;
-import SemanticQA.listeners.StemmingListener;
-import SemanticQA.listeners.TokenizerListener;
-import SemanticQA.models.nlp.SemanticAnalyzer;
-import SemanticQA.models.nlp.Stemming;
-import SemanticQA.models.nlp.Tokenizer;
+import SemanticQA.interfaces.OntologyLoaderListener;
+import SemanticQA.interfaces.OntologyQueryListener;
+import SemanticQA.interfaces.SemanticAnalyzerListener;
+import SemanticQA.models.nlp.Parser;
 import SemanticQA.models.ontology.OntologyLoader;
 import SemanticQA.models.ontology.OntologyQuery;
+
 import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
+
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
+
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.reasoner.BufferingMode;
 
@@ -38,25 +34,21 @@ public class ThesisDesktopVersion {
         
         String sentence = scan.nextLine();
         
-        Stemming.stem(sentence);
-		Stemming.then(new StemmingListener() {
-
-            @Override
-            public void onStemmingMatch(Map<String,Object> finalWord) {
-                System.out.println(finalWord);
-            }
-
-            @Override
-            public void onStemmingProgress(String message) {
-                cetak(message);
-            }
-
-            @Override
-            public void onStemmingFailed(String reason) {
-                System.out.println("stemming failed");
-                cetak(reason);
-            }
-        });
+        Parser.analyze(sentence);
+        Parser.then(new SemanticAnalyzerListener() {
+			
+			@Override
+			public void onAnalyzeSuccess(List<Object> parseTree) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onAnalyzeFail(String reason) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 
     }
     

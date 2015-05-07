@@ -5,12 +5,13 @@
  */
 package SemanticQA.models.ontology;
 
-import SemanticQA.listeners.OntologyQueryListener;
+import SemanticQA.interfaces.OntologyQueryListener;
 import de.derivo.sparqldlapi.Query;
 import de.derivo.sparqldlapi.QueryEngine;
 import de.derivo.sparqldlapi.QueryResult;
 import de.derivo.sparqldlapi.exceptions.QueryEngineException;
 import de.derivo.sparqldlapi.exceptions.QueryParserException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -20,8 +21,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
+
 import uk.ac.manchester.cs.owl.owlapi.OWLClassImpl;
 import uk.ac.manchester.cs.owl.owlapi.OWLDataPropertyImpl;
 import uk.ac.manchester.cs.owl.owlapi.OWLNamedIndividualImpl;

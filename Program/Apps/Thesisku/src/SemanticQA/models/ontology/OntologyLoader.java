@@ -5,9 +5,11 @@
  */
 package SemanticQA.models.ontology;
 
-import SemanticQA.listeners.OntologyLoaderListener;
+import SemanticQA.interfaces.OntologyLoaderListener;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.io.OWLOntologyCreationIOException;
 import org.semanticweb.owlapi.model.IRI;

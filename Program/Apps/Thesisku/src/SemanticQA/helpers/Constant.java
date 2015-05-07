@@ -27,5 +27,10 @@ public abstract class Constant {
     
     public static final boolean USE_REASONER = true;
     
-    public static final List<String> ONTOLOGIES = new ArrayList(){{add(ONTOGEO_URL);add(ONTOGOV_URL); add(ONTOPAR_URL);}};
+    public static final List<String> ONTOLOGIES = new ArrayList<String>(){/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+	{add(ONTOGEO_URL);add(ONTOGOV_URL); add(ONTOPAR_URL);}};
 }
