@@ -1,1 +1,6 @@
 \section{Saran}
+Sistem \emph{question answering} yang dikembangkan dalam penelitian ini juga tidak lepas dari berbagai kekurangan, untuk itu beberapa saran yang dapat diberikan guna pengembangan lebih lanjut diantaranya adalah:
+\begin{enumerate}
+	\item Sistem gagal membentuk \emph{parse tree} yang disebabkan oleh kesalahan sistem dalam menentukan tipe kata pada tahapan penentuan melalui analisa bentuk morfologi. Proses ini terjadi karena kata yang bersangkutan tidak terdapat dalam database lexicon, untuk itu database lexicon perlu diperkaya lagi.
+	\item Query untuk pencarian jawaban dalam ontologi umumnya dilakukan lebih dari sekali untuk satu buah input pertanyaan yang sama. Hal ini disebabkan karena proses pembentukan \emph{parse tree} hanya memperhatikan struktur sintaksis sehingga dimungkinkan terbentuknya beberapa \emph{parse tree}. Penelitian selanjutnya diharapkan mampu mengeliminasi permasalahan ini, sehigga sistem mampu bekerja dengan lebih cepat dan efisien.
+\end{enumerate}
