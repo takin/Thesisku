@@ -14,7 +14,9 @@ Bahan/*
 Odt/*
 Program/API/Jena/*
 Program/Ontologi/v*.*/*
-/Program/Apps/DesktopVersion/nbproject/private/
-/Program/Apps/DesktopVersion/build/
-/Program/Apps/DesktopVersion/dist/
+Program/Apps/DesktopVersion/nbproject/private/
+Program/Apps/.metadata/*
+Program/Apps/.recommenders/*
+Program/Apps/DesktopVersion/build/
+Program/Apps/DesktopVersion/dist/
 thesisku.sublime-workspace
