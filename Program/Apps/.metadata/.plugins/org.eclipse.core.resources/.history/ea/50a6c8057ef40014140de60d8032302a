@@ -1,5 +1,0 @@
-package SemanticQA.interfaces;
-
-public interface DatabaseConnector {
-
-}
